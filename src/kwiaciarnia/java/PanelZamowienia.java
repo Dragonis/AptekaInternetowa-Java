@@ -52,7 +52,9 @@ public class PanelZamowienia extends javax.swing.JFrame {
      "Pool", new Integer(10), new Boolean(false)}
 };
         
-        jTable1 = new JTable(data, columnNames);
+        //jTable1 = new JTable(data, columnNames);
+        
+        jTable1.setModel(new TableModel());
         
 }
 
