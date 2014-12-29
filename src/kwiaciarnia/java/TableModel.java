@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class TableModel extends AbstractTableModel {
 
-    private String[] columnNames = {"ID", "Name", "CosJezscze","Cena"};
+    private String[] columnNames = {"ID", "Tytul", "Autor","Cena"};
     private ArrayList<Ksiazka> tab = (new DatabaseLayer()).getKsiazki();
 
     @Override
