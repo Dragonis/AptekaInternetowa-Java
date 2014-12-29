@@ -107,7 +107,7 @@ public class PanelLogowania extends javax.swing.JFrame {
             Uzytkownik.Nazwa = jTextField1.getText();
             Uzytkownik.Haslo = jTextField2.getText();
             pack();
-            new PanelZamowienia().setVisible(true);
+            new PanelZamowieniaKlienta().setVisible(true);
             
   
             System.out.println("Zostales zalogowany");
