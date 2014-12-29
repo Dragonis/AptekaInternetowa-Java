@@ -12,14 +12,14 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Wojtek
  */
-public class TableModel extends AbstractTableModel {
+public class TableModel_NoweKsiazki extends AbstractTableModel {
 
     private String[] columnNames = {"ID", "Tytul", "Autor","Cena","Sztuk","Kupiony"};
-    private ArrayList<Ksiazka> tab = (new DatabaseLayer()).getKsiazki();
+    private ArrayList<Ksiazka> tabNoweKsiazki = (new DatabaseLayer()).getNoweKsiazki();
 
     @Override
     public int getRowCount() {
-        return tab.size();
+        return tabNoweKsiazki.size();
     }
 
     @Override
@@ -29,7 +29,7 @@ public class TableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Ksiazka ks = tab.get(rowIndex);
+        Ksiazka ks = tabNoweKsiazki.get(rowIndex);
         switch (columnIndex) {
             case 0:
                 return ks.getId();
