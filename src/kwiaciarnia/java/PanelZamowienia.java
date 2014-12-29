@@ -20,39 +20,9 @@ public class PanelZamowienia extends javax.swing.JFrame {
      * Creates new form PanelZamowienia
      */
     
-    public void setJTable(JTable jTable, ArrayList<Object> obj) {
-    DefaultTableModel model = new DefaultTableModel();
-    jTable.setModel(model);
-    model.setColumnIdentifiers(new String[]{"toString", "getClass.toString"});
-    for (Object o : obj) {
-        model.addRow(new String[]{o.toString(), o.getClass().toString()});
-    }
-}
-    
+     
     public PanelZamowienia() {
         initComponents();
-        
-     
-        String[] columnNames = {"First Name",
-                        "Last Name",
-                        "Sport",
-                        "# of Years",
-                        "Vegetarian"};
-        
-        Object[][] data = {
-    {"Kathy", "Smith",
-     "Snowboarding", new Integer(5), new Boolean(false)},
-    {"John", "Doe",
-     "Rowing", new Integer(3), new Boolean(true)},
-    {"Sue", "Black",
-     "Knitting", new Integer(2), new Boolean(false)},
-    {"Jane", "White",
-     "Speed reading", new Integer(20), new Boolean(true)},
-    {"Joe", "Brown",
-     "Pool", new Integer(10), new Boolean(false)}
-};
-        
-        //jTable1 = new JTable(data, columnNames);
         
         jTable1.setModel(new TableModel());
         
@@ -74,13 +44,13 @@ public class PanelZamowienia extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "Tytuł", "Autor"
+                "ID", "Tytuł", "Autor", "Cena"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

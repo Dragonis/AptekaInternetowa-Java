@@ -12,42 +12,41 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Wojtek
  */
-public class TableModel extends AbstractTableModel{
+public class TableModel extends AbstractTableModel {
 
-    private String[] columnNames = {"ID","Name","CosJezscze"};
+    private String[] columnNames = {"ID", "Name", "CosJezscze","Cena"};
     private ArrayList<Ksiazka> tab = (new DatabaseLayer()).getKsiazki();
-    
-    
+
     @Override
     public int getRowCount() {
-    return tab.size();
+        return tab.size();
     }
 
     @Override
     public int getColumnCount() {
         return columnNames.length;
-        }
+    }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Ksiazka ks = tab.get(rowIndex);
-        switch(columnIndex)
-        {
+        switch (columnIndex) {
             case 0:
                 return ks.getId();
             case 1:
                 return ks.getTytul();
             case 2:
-                return ks.getAutor();     
+                return ks.getAutor();
+            case 3:
+                return ks.getCena();
             default:
                 throw new UnsupportedOperationException("Not supported operation");
         }
     }
 
-    public String[] getColumnNames() {
-        return columnNames;
+    @Override
+    public String getColumnName(int col) {
+        return columnNames[col];
     }
-    
-    
-    
+
 }

@@ -12,21 +12,20 @@ import java.util.ArrayList;
  * @author Wojtek
  */
 public class DatabaseLayer {
-    
-    public ArrayList<Ksiazka> getKsiazki()
-    {
-        
-    ArrayList <Ksiazka> set = new ArrayList();
-        
-    Ksiazka b1 = new Ksiazka(1, "Tytul", "Autor");
-    Ksiazka b2 = new Ksiazka(2, "Tytul2", "Autor2");
-    Ksiazka b3 = new Ksiazka(3, "Tytul3", "Autor3");
-    
-    set.add(b1);
-    set.add(b2);
-    set.add(b3);
-        
-    return set;
+
+    public ArrayList<Ksiazka> getKsiazki() {
+
+        ArrayList<Ksiazka> set = new ArrayList();
+
+        Ksiazka b1 = new Ksiazka(1, "Tytul", "Autor",50);
+        Ksiazka b2 = new Ksiazka(2, "Tytul2", "Autor2",60);
+        Ksiazka b3 = new Ksiazka(3, "Tytul3", "Autor3",70);
+
+        set.add(b1);
+        set.add(b2);
+        set.add(b3);
+
+        return set;
     }
-    
+
 }

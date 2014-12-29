@@ -13,6 +13,15 @@ public class Ksiazka {
     private int id;
     private String tytul;
     private String autor;
+    private float cena;
+
+    public float getCena() {
+        return cena;
+    }
+
+    public void setCena(float cena) {
+        this.cena = cena;
+    }
  
     public int getId() {
         return id;
@@ -34,10 +43,11 @@ public class Ksiazka {
     }
  
     public Ksiazka() {}
-    public Ksiazka(int id, String tytul, String autor) {
+    public Ksiazka(int id, String tytul, String autor, float cena) {
         this.id = id;
         this.tytul = tytul;
         this.autor = autor;
+        this.cena = cena;
     }
  
     @Override
