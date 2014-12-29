@@ -6,18 +6,17 @@
 package kwiaciarnia.java;
 
 import javax.swing.JOptionPane;
+import kwiaciarnia.models.Uzytkownik;
 
 /**
  *
  * @author Wojtek
  */
 public class PanelLogowania extends javax.swing.JFrame {
-
-    /**
-     * Creates new form PanelLogowania
-     */
+   
     public PanelLogowania() {
         initComponents();
+
     }
 
     /**
@@ -105,10 +104,12 @@ public class PanelLogowania extends javax.swing.JFrame {
         
         if(jTextField1.getText().equals("test") && jTextField2.getText().equals("test"))
         {
+            Uzytkownik.Nazwa = jTextField1.getText();
+            Uzytkownik.Haslo = jTextField2.getText();
             pack();
             new PanelZamowienia().setVisible(true);
             
-            
+  
             System.out.println("Zostales zalogowany");
         }else{
             System.out.println("Nie zostales zalogowany");

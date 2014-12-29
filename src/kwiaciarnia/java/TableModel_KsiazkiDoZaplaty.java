@@ -5,6 +5,7 @@
  */
 package kwiaciarnia.java;
 
+import kwiaciarnia.models.Ksiazka;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
