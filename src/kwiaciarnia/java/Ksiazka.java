@@ -14,6 +14,24 @@ public class Ksiazka {
     private String tytul;
     private String autor;
     private float cena;
+    private int sztuk;
+
+    public int getSztuk() {
+        return sztuk;
+    }
+
+    public void setSztuk(int sztuk) {
+        this.sztuk = sztuk;
+    }
+    private boolean kupiony;
+
+    public boolean isKupiony() {
+        return kupiony;
+    }
+
+    public void setKupiony(boolean kupiony) {
+        this.kupiony = kupiony;
+    }
 
     public float getCena() {
         return cena;
@@ -43,15 +61,13 @@ public class Ksiazka {
     }
  
     public Ksiazka() {}
-    public Ksiazka(int id, String tytul, String autor, float cena) {
+    public Ksiazka(int id, String tytul, String autor, float cena, int sztuk, boolean kupiony) {
         this.id = id;
         this.tytul = tytul;
         this.autor = autor;
         this.cena = cena;
+        this.sztuk = sztuk;
+        this.kupiony = kupiony;
     }
- 
-    @Override
-    public String toString() {
-        return "["+id+"] - "+tytul+" - "+autor;
-    }    
+
 }

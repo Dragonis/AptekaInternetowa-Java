@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class TableModel extends AbstractTableModel {
 
-    private String[] columnNames = {"ID", "Tytul", "Autor","Cena"};
+    private String[] columnNames = {"ID", "Tytul", "Autor","Cena","Sztuk","Kupiony"};
     private ArrayList<Ksiazka> tab = (new DatabaseLayer()).getKsiazki();
 
     @Override
@@ -39,6 +39,10 @@ public class TableModel extends AbstractTableModel {
                 return ks.getAutor();
             case 3:
                 return ks.getCena();
+            case 4:
+                return ks.getSztuk();
+            case 5:
+                return ks.isKupiony();
             default:
                 throw new UnsupportedOperationException("Not supported operation");
         }

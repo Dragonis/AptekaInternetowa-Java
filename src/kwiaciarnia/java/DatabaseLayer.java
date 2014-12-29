@@ -17,9 +17,9 @@ public class DatabaseLayer {
 
         ArrayList<Ksiazka> set = new ArrayList();
 
-        Ksiazka b1 = new Ksiazka(1, "Tytul", "Autor",50);
-        Ksiazka b2 = new Ksiazka(2, "Tytul2", "Autor2",60);
-        Ksiazka b3 = new Ksiazka(3, "Tytul3", "Autor3",70);
+        Ksiazka b1 = new Ksiazka(1, "Tytul", "Autor", 50, 30, true);
+        Ksiazka b2 = new Ksiazka(2, "Tytul2", "Autor2", 60, 80, false);
+        Ksiazka b3 = new Ksiazka(3, "Tytul3", "Autor3", 70, 40, true);
 
         set.add(b1);
         set.add(b2);
