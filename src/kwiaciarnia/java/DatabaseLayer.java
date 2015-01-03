@@ -41,9 +41,9 @@ public class DatabaseLayer {
     public ArrayList<Ksiazka> getKsiazkidoZaplaty()
     {
         
-        Ksiazka doZaplaty1 = new Ksiazka(1, "AAA", "Autor", 50, 30, true);
-        Ksiazka doZaplaty2 = new Ksiazka(2, "BBB", "Autor2", 60, 80, false);
-        Ksiazka doZaplaty3 = new Ksiazka(3, "CCC", "Autor3", 70, 40, true);
+        Ksiazka doZaplaty1 = new Ksiazka(1, "AAA", "Autor", 50, 30, Boolean.TRUE);
+        Ksiazka doZaplaty2 = new Ksiazka(2, "BBB", "Autor2", 60, 80, Boolean.FALSE);
+        Ksiazka doZaplaty3 = new Ksiazka(3, "CCC", "Autor3", 70, 40, Boolean.TRUE);
         
         set.add(doZaplaty1); set.add(doZaplaty2); set.add(doZaplaty3);
 

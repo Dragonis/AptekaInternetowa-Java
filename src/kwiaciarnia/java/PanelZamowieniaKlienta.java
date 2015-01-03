@@ -8,8 +8,11 @@ package kwiaciarnia.java;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import kwiaciarnia.models.Uzytkownik;
 
 /**
@@ -31,8 +34,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
         jTable2.setModel(new TableModel_KsiazkiWPromocji());
         jTable3.setModel(new TableModel_NoweKsiazki());
         jTable4.setModel(new TableModel_KsiazkiDoZaplaty());
-            
-        
+
 }
 
     /**

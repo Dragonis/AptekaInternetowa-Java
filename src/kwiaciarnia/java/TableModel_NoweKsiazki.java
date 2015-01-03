@@ -7,17 +7,20 @@ package kwiaciarnia.java;
 
 import kwiaciarnia.models.Ksiazka;
 import java.util.ArrayList;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author Wojtek
  */
-public class TableModel_NoweKsiazki extends AbstractTableModel {
+public class TableModel_NoweKsiazki extends AbstractTableModel implements TableModelListener {
 
     private String[] columnNames = {"ID", "Tytul", "Autor","Cena","Sztuk","Kupiony"};
     private ArrayList<Ksiazka> tabNoweKsiazki = (new DatabaseLayer()).getNoweKsiazki();
-
+    
     @Override
     public int getRowCount() {
         return tabNoweKsiazki.size();
@@ -49,9 +52,55 @@ public class TableModel_NoweKsiazki extends AbstractTableModel {
         }
     }
 
+ 
+        
     @Override
     public String getColumnName(int col) {
         return columnNames[col];
+    }
+    
+     // Pozwala na edytowanie danych w tabeli
+        @Override
+        public boolean isCellEditable(int row, int col) {
+           
+            if(tabNoweKsiazki.get(row).isKupiony() == false)
+            {
+                tabNoweKsiazki.get(row).setKupiony(true);
+                System.out.println("Zmieniono wartosc na true");
+            }else{
+                tabNoweKsiazki.get(row).setKupiony(false);
+                System.out.println("Zmieniono wartosc na false - w isCellEditable");
+            }
+        
+            return col == 5;
+        }
+        
+     public Class getColumnClass(int c) {
+        switch (c) {
+            case 5:
+                return Boolean.class;
+            default:
+                return String.class;
+        }
+    }
+    
+       
+
+    @Override
+    public void tableChanged(TableModelEvent e) {
+
+     int row = e.getFirstRow();
+        int column = e.getColumn();
+        TableModel model = (TableModel)e.getSource();
+        String columnName = model.getColumnName(column);
+        Object data = model.getValueAt(row, column);
+
+        // ... Do something with data
+    }
+    
+    public void setValueAt(Object value, int row, int col) {
+        
+        fireTableCellUpdated(row, col);
     }
 
 }
