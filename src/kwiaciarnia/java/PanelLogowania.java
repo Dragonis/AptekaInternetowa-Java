@@ -48,9 +48,9 @@ public class PanelLogowania extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("test");
+        jTextField1.setText("user");
 
-        jTextField2.setText("test");
+        jTextField2.setText("user");
 
         jLabel3.setText("Panel Administracyjny - Kwiaciarnia");
 
@@ -102,7 +102,7 @@ public class PanelLogowania extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        if(jTextField1.getText().equals("test") && jTextField2.getText().equals("test"))
+        if(jTextField1.getText().equals("user") && jTextField2.getText().equals("user"))
         {
             Uzytkownik.Nazwa = jTextField1.getText();
             Uzytkownik.Haslo = jTextField2.getText();
@@ -110,10 +110,26 @@ public class PanelLogowania extends javax.swing.JFrame {
             new PanelZamowieniaKlienta().setVisible(true);
             
   
-            System.out.println("Zostales zalogowany");
-        }else{
-            System.out.println("Nie zostales zalogowany");
+            System.out.println("Zostales zalogowany jako user");
         }
+        
+        if(jTextField1.getText().equals("root") && jTextField2.getText().equals("root"))
+        {
+            Uzytkownik.Nazwa = jTextField1.getText();
+            Uzytkownik.Haslo = jTextField2.getText();
+            pack();
+            new PanelSprzedawcy().setVisible(true);
+            
+  
+            System.out.println("Zostales zalogowany jako admin");
+        }
+        
+        else{
+            System.out.println("Podales nie prawidlowe dane logowania");
+            JOptionPane.showMessageDialog(this,"Podales nie prawidlowe dane logowania");
+        }
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
