@@ -7,15 +7,17 @@ package kwiaciarnia.java;
 
 import kwiaciarnia.models.Ksiazka;
 import java.util.ArrayList;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
  * @author Wojtek
  */
-public class TableModel_KsiazkiDoZaplaty extends AbstractTableModel {
+public class TableModel_KsiazkiDoZaplaty extends AbstractTableModel implements TableModelListener{
 
-    private String[] columnNames = {"ID", "Tytul", "Autor","Cena","Sztuk","Kupiony"};
+    private String[] columnNames = {"ID", "Tytul", "Autor","Cena","Sztuk"};
     private ArrayList<Ksiazka> tabKsiazkiDoZaplaty = (new DatabaseLayer()).getKsiazkidoZaplaty();
 
     @Override
@@ -52,6 +54,11 @@ public class TableModel_KsiazkiDoZaplaty extends AbstractTableModel {
     @Override
     public String getColumnName(int col) {
         return columnNames[col];
+    }
+
+    @Override
+    public void tableChanged(TableModelEvent e) {
+              //  tabKsiazkiDoZaplaty.add(new Ksiazka(6, "aaa", "bbb", (float) 14.06, 5));
     }
 
 }

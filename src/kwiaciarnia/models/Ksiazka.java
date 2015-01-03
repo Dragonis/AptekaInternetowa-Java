@@ -70,4 +70,13 @@ public class Ksiazka {
         this.kupiony = kupiony;
     }
 
+    public Ksiazka(int id, String tytul, String autor, float cena, int sztuk) {
+        this.id = id;
+        this.tytul = tytul;
+        this.autor = autor;
+        this.cena = cena;
+        this.sztuk = sztuk;
+    }
+    
+
 }

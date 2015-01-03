@@ -191,6 +191,11 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
             }
         });
     }
+    
+    public JTable getJTable4()
+    {
+        return jTable4;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

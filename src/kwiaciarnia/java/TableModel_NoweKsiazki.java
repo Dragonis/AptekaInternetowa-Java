@@ -7,9 +7,12 @@ package kwiaciarnia.java;
 
 import kwiaciarnia.models.Ksiazka;
 import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -20,6 +23,11 @@ public class TableModel_NoweKsiazki extends AbstractTableModel implements TableM
 
     private String[] columnNames = {"ID", "Tytul", "Autor","Cena","Sztuk","Kupiony"};
     private ArrayList<Ksiazka> tabNoweKsiazki = (new DatabaseLayer()).getNoweKsiazki();
+    private ArrayList<Ksiazka> tabKsiazkiDoZaplaty = (new DatabaseLayer()).getKsiazkidoZaplaty();
+
+    public TableModel_NoweKsiazki() {
+        addTableModelListener(this);
+    }
     
     @Override
     public int getRowCount() {
@@ -67,6 +75,17 @@ public class TableModel_NoweKsiazki extends AbstractTableModel implements TableM
             {
                 tabNoweKsiazki.get(row).setKupiony(true);
                 System.out.println("Zmieniono wartosc na true");
+                
+                tabNoweKsiazki.add(new Ksiazka(4, "aaa", "bbb", (float) 14.06, 5, true));
+                tabKsiazkiDoZaplaty.add(new Ksiazka(4, "aaa", "bbb", (float) 14.06, 5, true));
+                JTable JTable4 = new PanelZamowieniaKlienta().getJTable4();
+                JTable4.setValueAt(1, 4, 0);
+                
+                fireTableCellUpdated(0, 4);
+                JTable4.setModel(this);
+                
+                
+                
             }else{
                 tabNoweKsiazki.get(row).setKupiony(false);
                 System.out.println("Zmieniono wartosc na false - w isCellEditable");
@@ -95,7 +114,8 @@ public class TableModel_NoweKsiazki extends AbstractTableModel implements TableM
         String columnName = model.getColumnName(column);
         Object data = model.getValueAt(row, column);
 
-        // ... Do something with data
+        tabKsiazkiDoZaplaty.add(new Ksiazka(4, "aaa", "bbb", (float) 14.06, 5, true));
+                
     }
     
     public void setValueAt(Object value, int row, int col) {
