@@ -34,6 +34,8 @@ public class PanelLogowania extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,6 +55,10 @@ public class PanelLogowania extends javax.swing.JFrame {
         jTextField2.setText("user");
 
         jLabel3.setText("Panel Administracyjny - Kwiaciarnia");
+
+        jLabel4.setText("user;user- konto uzytkownika ");
+
+        jLabel5.setText("root;root - konto wlasciciela sklepu");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,8 +82,13 @@ public class PanelLogowania extends javax.swing.JFrame {
                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
-                                .addComponent(jButton1)))))
-                .addContainerGap(133, Short.MAX_VALUE))
+                                .addComponent(jButton1))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4))))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,7 +105,11 @@ public class PanelLogowania extends javax.swing.JFrame {
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
@@ -112,8 +127,7 @@ public class PanelLogowania extends javax.swing.JFrame {
   
             System.out.println("Zostales zalogowany jako user");
         }
-        
-        if(jTextField1.getText().equals("root") && jTextField2.getText().equals("root"))
+        else if(jTextField1.getText().equals("root") && jTextField2.getText().equals("root"))
         {
             Uzytkownik.Nazwa = jTextField1.getText();
             Uzytkownik.Haslo = jTextField2.getText();
@@ -122,8 +136,7 @@ public class PanelLogowania extends javax.swing.JFrame {
             
   
             System.out.println("Zostales zalogowany jako admin");
-        }
-        
+        }        
         else{
             System.out.println("Podales nie prawidlowe dane logowania");
             JOptionPane.showMessageDialog(this,"Podales nie prawidlowe dane logowania");
@@ -172,6 +185,8 @@ public class PanelLogowania extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
