@@ -7,6 +7,7 @@ package kwiaciarnia.java;
 
 import kwiaciarnia.models.Ksiazka;
 import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
@@ -15,9 +16,9 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Wojtek
  */
-public class TableModel_KsiazkiDoZaplaty extends AbstractTableModel implements TableModelListener{
+public class TableModel_KsiazkiDoZaplaty extends AbstractTableModel implements TableModelListener {
 
-    private String[] columnNames = {"ID", "Tytul", "Autor","Cena","Sztuk"};
+    private String[] columnNames = {"ID", "Tytul", "Autor", "Cena", "Sztuk"};
     private ArrayList<Ksiazka> tabKsiazkiDoZaplaty = (new DatabaseLayer()).getKsiazkidoZaplaty();
 
     @Override
@@ -49,6 +50,31 @@ public class TableModel_KsiazkiDoZaplaty extends AbstractTableModel implements T
             default:
                 throw new UnsupportedOperationException("Not supported operation");
         }
+        
+    }
+    /* 
+     public Class getColumnClass(int c) {
+     switch (c) {
+     case 5:
+     return Boolean.class;
+     default:
+     return String.class;
+     }
+     }
+     */
+    
+       // Pozwala na edytowanie danych w tabeli
+        @Override
+        public boolean isCellEditable(int row, int col) {
+           
+            return col == 4;
+            
+        }
+
+    public void setValueAt(Object value, int row, int col) {
+  tabKsiazkiDoZaplaty.add(new Ksiazka(4, "aaa", "bbb", (float) 14.04, 2));
+        fireTableCellUpdated(row, col);
+      
     }
 
     @Override
@@ -58,7 +84,7 @@ public class TableModel_KsiazkiDoZaplaty extends AbstractTableModel implements T
 
     @Override
     public void tableChanged(TableModelEvent e) {
-              //  tabKsiazkiDoZaplaty.add(new Ksiazka(6, "aaa", "bbb", (float) 14.06, 5));
+   
     }
 
 }

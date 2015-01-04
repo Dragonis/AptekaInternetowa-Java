@@ -77,12 +77,15 @@ public class TableModel_NoweKsiazki extends AbstractTableModel implements TableM
                 System.out.println("Zmieniono wartosc na true");
                 
                 tabNoweKsiazki.add(new Ksiazka(4, "aaa", "bbb", (float) 14.06, 5, true));
-                tabKsiazkiDoZaplaty.add(new Ksiazka(4, "aaa", "bbb", (float) 14.06, 5, true));
+                Ksiazka ks = new Ksiazka(4, "aaa", "bbb", (float) 14.06, 5);
                 JTable JTable4 = new PanelZamowieniaKlienta().getJTable4();
                 JTable4.setValueAt(1, 4, 0);
                 
                 fireTableCellUpdated(0, 4);
                 JTable4.setModel(this);
+                
+                new TableModel_KsiazkiDoZaplaty().setValueAt(0, row, col);
+                
                 
                 
                 
