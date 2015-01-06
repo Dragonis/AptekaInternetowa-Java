@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kwiaciarnia.java;
+package AptekaInternetowa.java;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import kwiaciarnia.models.Uzytkownik;
+import AptekaInternetowa.models.Uzytkownik;
 
 /**
  *
@@ -31,9 +31,9 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
    
         jLabel2.setText(Uzytkownik.Nazwa);
         
-        jTable2.setModel(new TableModel_KsiazkiWPromocji());
-        jTable3.setModel(new TableModel_NoweKsiazki());
-        jTable4.setModel(new TableModel_KsiazkiDoZaplaty());
+        jTable2.setModel(new TableModel_LekiWPromocji());
+        jTable3.setModel(new TableModel_NoweLeki());
+        jTable4.setModel(new TableModel_LekiDoZaplaty());
 
 }
 
@@ -72,7 +72,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Tytuł", "Autor", "Cena"
+                "ID", "Nazwa", "Producent", "Cena"
             }
         ));
         jScrollPane3.setViewportView(jTable3);
@@ -87,7 +87,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Tytuł", "Autor", "Cena"
+                "ID", "Nazwa", "Producent", "Cena"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
@@ -102,7 +102,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Nazwa", "Producent", "Cena"
             }
         ));
         jScrollPane4.setViewportView(jTable4);

@@ -3,12 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Wojtek/Documents/NetBeansProjects/Kwiaciarnia-Java/src/kwiaciarnia/java/TableModel_NoweKsiazki.java</file>
-            <file>file:/C:/Users/Wojtek/Documents/NetBeansProjects/Kwiaciarnia-Java/src/kwiaciarnia/java/DatabaseLayer.java</file>
-            <file>file:/C:/Users/Wojtek/Documents/NetBeansProjects/Kwiaciarnia-Java/src/kwiaciarnia/models/Ksiazka.java</file>
-            <file>file:/C:/Users/Wojtek/Documents/NetBeansProjects/Kwiaciarnia-Java/src/kwiaciarnia/java/TableModel_KsiazkiDoZaplaty.java</file>
-            <file>file:/C:/Users/Wojtek/Documents/NetBeansProjects/Kwiaciarnia-Java/src/kwiaciarnia/java/PanelZamowieniaKlienta.java</file>
-            <file>file:/C:/Users/Wojtek/Documents/NetBeansProjects/Kwiaciarnia-Java/src/kwiaciarnia/java/PanelSprzedawcy.java</file>
+            <file>file:/C:/Users/Wojtek/Documents/NetBeansProjects/Kwiaciarnia-Java/src/apteka_internetowa/java/DatabaseLayer.java</file>
+            <file>file:/C:/Users/Wojtek/Documents/NetBeansProjects/Kwiaciarnia-Java/src/apteka_internetowa/java/PanelZamowieniaKlienta.java</file>
+            <file>file:/C:/Users/Wojtek/Documents/NetBeansProjects/Kwiaciarnia-Java/src/apteka_internetowa/java/TableModel_NoweLeki.java</file>
+            <file>file:/C:/Users/Wojtek/Documents/NetBeansProjects/Kwiaciarnia-Java/src/apteka_internetowa/java/TableModel_LekiDoZaplaty.java</file>
+            <file>file:/C:/Users/Wojtek/Documents/NetBeansProjects/Kwiaciarnia-Java/src/apteka_internetowa/models/Lek.java</file>
+            <file>file:/C:/Users/Wojtek/Documents/NetBeansProjects/Kwiaciarnia-Java/src/apteka_internetowa/java/PanelSprzedawcy.java</file>
+            <file>file:/C:/Users/Wojtek/Documents/NetBeansProjects/Kwiaciarnia-Java/src/apteka_internetowa/java/PanelLogowania.java</file>
+            <file>file:/C:/Users/Wojtek/Documents/NetBeansProjects/Kwiaciarnia-Java/src/apteka_internetowa/java/TableModel_LekiWPromocji.java</file>
         </group>
     </open-files>
 </project-private>

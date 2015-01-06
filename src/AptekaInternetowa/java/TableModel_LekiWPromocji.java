@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kwiaciarnia.java;
+package AptekaInternetowa.java;
 
-import kwiaciarnia.models.Ksiazka;
+import AptekaInternetowa.models.Lek;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
@@ -13,14 +13,14 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Wojtek
  */
-public class TableModel_KsiazkiWPromocji extends AbstractTableModel {
+public class TableModel_LekiWPromocji extends AbstractTableModel {
 
-    private String[] columnNames = {"ID", "Tytul", "Autor","Cena","Sztuk","Kupiony"};
-    private ArrayList<Ksiazka> tabKsiazkiwPromocji = (new DatabaseLayer()).getKsiazkiwPromocji();
+    private String[] columnNames = {"ID", "Nazwa", "Producnt","Cena","Sztuk","Kupiony"};
+    private ArrayList<Lek> tabLekiwPromocji = (new DatabaseLayer()).getLekiwPromocji();
 
     @Override
     public int getRowCount() {
-        return tabKsiazkiwPromocji.size();
+        return tabLekiwPromocji.size();
     }
 
     @Override
@@ -30,14 +30,14 @@ public class TableModel_KsiazkiWPromocji extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Ksiazka ks = tabKsiazkiwPromocji.get(rowIndex);
+        Lek ks = tabLekiwPromocji.get(rowIndex);
         switch (columnIndex) {
             case 0:
                 return ks.getId();
             case 1:
-                return ks.getTytul();
+                return ks.getNazwa();
             case 2:
-                return ks.getAutor();
+                return ks.getProducent();
             case 3:
                 return ks.getCena();
             case 4:

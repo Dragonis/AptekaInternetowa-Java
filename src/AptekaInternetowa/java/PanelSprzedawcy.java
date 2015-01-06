@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kwiaciarnia.java;
+package AptekaInternetowa.java;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import kwiaciarnia.models.Ksiazka;
-import kwiaciarnia.models.Uzytkownik;
+import AptekaInternetowa.models.Lek;
+import AptekaInternetowa.models.Uzytkownik;
 
 /**
  *
@@ -29,8 +29,8 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
    
         jLabel2.setText(Uzytkownik.Nazwa);
         
-        jTable2.setModel(new TableModel_KsiazkiWPromocji());
-        jTable3.setModel(new TableModel_NoweKsiazki());
+        jTable2.setModel(new TableModel_LekiWPromocji());
+        jTable3.setModel(new TableModel_NoweLeki());
        
             
         
@@ -61,7 +61,7 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
 
         jLabel1.setText("Jesteś zalogowany jako: ");
 
-        jLabel5.setText("Lista książek:");
+        jLabel5.setText("Lista leków:");
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -71,7 +71,7 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Tytuł", "Autor", "Cena"
+                "ID", "Nazwa", "Producent", "Cena"
             }
         ));
         jScrollPane3.setViewportView(jTable3);
@@ -86,7 +86,7 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Tytuł", "Autor", "Cena"
+                "ID", "Nazwa", "Producent", "Cena"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
@@ -95,11 +95,11 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
 
         jLabel2.setText("jLabel2");
 
-        jLabel4.setText("Sprzedawca może wprowadzac, modyfikowac, usuwac wartosci tabeli.");
+        jLabel4.setText("Sprzedawca może wprowadzac, modyfikowac, usuwac dane tabeli.");
 
-        jLabel6.setText("Uzytkownik moze tylko zaznaczac ktora ksiazke chce kupic");
+        jLabel6.setText("Uzytkownik moze tylko zaznaczac ktore leki chce kupic");
 
-        jButton1.setLabel("Dodaj produkt");
+        jButton1.setText("Dodaj lek");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

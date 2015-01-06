@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kwiaciarnia.java;
+package AptekaInternetowa.java;
 
-import kwiaciarnia.models.Ksiazka;
+import AptekaInternetowa.models.Lek;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
@@ -16,14 +16,14 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Wojtek
  */
-public class TableModel_KsiazkiDoZaplaty extends AbstractTableModel implements TableModelListener {
+public class TableModel_LekiDoZaplaty extends AbstractTableModel implements TableModelListener {
 
-    private String[] columnNames = {"ID", "Tytul", "Autor", "Cena", "Sztuk"};
-    private ArrayList<Ksiazka> tabKsiazkiDoZaplaty = (new DatabaseLayer()).getKsiazkidoZaplaty();
+    private String[] columnNames = {"ID", "Nazwa", "Producent", "Cena", "Sztuk"};
+    private ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseLayer()).getLekidoZaplaty();
 
     @Override
     public int getRowCount() {
-        return tabKsiazkiDoZaplaty.size();
+        return tabLekiDoZaplaty.size();
     }
 
     @Override
@@ -33,14 +33,14 @@ public class TableModel_KsiazkiDoZaplaty extends AbstractTableModel implements T
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Ksiazka ks = tabKsiazkiDoZaplaty.get(rowIndex);
+        Lek ks = tabLekiDoZaplaty.get(rowIndex);
         switch (columnIndex) {
             case 0:
                 return ks.getId();
             case 1:
-                return ks.getTytul();
+                return ks.getNazwa();
             case 2:
-                return ks.getAutor();
+                return ks.getProducent();
             case 3:
                 return ks.getCena();
             case 4:
@@ -72,7 +72,7 @@ public class TableModel_KsiazkiDoZaplaty extends AbstractTableModel implements T
         }
 
     public void setValueAt(Object value, int row, int col) {
-  tabKsiazkiDoZaplaty.add(new Ksiazka(4, "aaa", "bbb", (float) 14.04, 2));
+  tabLekiDoZaplaty.add(new Lek(4, "aaa", "bbb", (float) 14.04, 2));
         fireTableCellUpdated(row, col);
       
     }

@@ -57,7 +57,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="110" max="32767" attributes="0"/>
+              <EmptySpace pref="89" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -118,7 +118,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Panel Administracyjny - Kwiaciarnia"/>
+        <Property name="text" type="java.lang.String" value="Panel Administracyjny - Apteka Internetowa"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -128,7 +128,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="root;root - konto wlasciciela sklepu"/>
+        <Property name="text" type="java.lang.String" value="root;root - konto wlasciciela apteki"/>
       </Properties>
     </Component>
   </SubComponents>

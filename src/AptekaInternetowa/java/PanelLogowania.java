@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kwiaciarnia.java;
+package AptekaInternetowa.java;
 
 import javax.swing.JOptionPane;
-import kwiaciarnia.models.Uzytkownik;
+import AptekaInternetowa.models.Uzytkownik;
 
 /**
  *
@@ -54,11 +54,11 @@ public class PanelLogowania extends javax.swing.JFrame {
 
         jTextField2.setText("user");
 
-        jLabel3.setText("Panel Administracyjny - Kwiaciarnia");
+        jLabel3.setText("Panel Administracyjny - Apteka Internetowa");
 
         jLabel4.setText("user;user- konto uzytkownika ");
 
-        jLabel5.setText("root;root - konto wlasciciela sklepu");
+        jLabel5.setText("root;root - konto wlasciciela apteki");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,7 +88,7 @@ public class PanelLogowania extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4))))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -3,18 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kwiaciarnia.models;
+package AptekaInternetowa.models;
 
 /**
  *
  * @author Wojtek
  */
-public class Ksiazka {
+public class Lek {
     private int id;
-    private String tytul;
-    private String autor;
+    private String nazwa;
+    private String producent;
     private float cena;
     private int sztuk;
+
+    public Lek() {
+    }
+    
 
     public int getSztuk() {
         return sztuk;
@@ -47,33 +51,32 @@ public class Ksiazka {
     public void setId(int id) {
         this.id = id;
     }
-    public String getTytul() {
-        return tytul;
+    public String getNazwa() {
+        return nazwa;
     }
-    public void setTytul(String tytul) {
-        this.tytul = tytul;
+    public void setNazwa(String nazwa) {
+        this.nazwa = nazwa;
     }
-    public String getAutor() {
-        return autor;
+    public String getProducent() {
+        return producent;
     }
-    public void setAutor(String autor) {
-        this.autor = autor;
+    public void setProducent(String producent) {
+        this.producent = producent;
     }
  
-    public Ksiazka() {}
-    public Ksiazka(int id, String tytul, String autor, float cena, int sztuk, boolean kupiony) {
+    public Lek(int id, String tytul, String autor, float cena, int sztuk, boolean kupiony) {
         this.id = id;
-        this.tytul = tytul;
-        this.autor = autor;
+        this.nazwa = tytul;
+        this.producent = autor;
         this.cena = cena;
         this.sztuk = sztuk;
         this.kupiony = kupiony;
     }
 
-    public Ksiazka(int id, String tytul, String autor, float cena, int sztuk) {
+    public Lek(int id, String tytul, String autor, float cena, int sztuk) {
         this.id = id;
-        this.tytul = tytul;
-        this.autor = autor;
+        this.nazwa = tytul;
+        this.producent = autor;
         this.cena = cena;
         this.sztuk = sztuk;
     }
