@@ -14,6 +14,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import AptekaInternetowa.models.Uzytkownik;
+import javax.swing.event.TableModelEvent;
 
 /**
  *
@@ -34,7 +35,15 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
         jTable2.setModel(new TableModel_LekiWPromocji());
         jTable3.setModel(new TableModel_NoweLeki());
         jTable4.setModel(new TableModel_LekiDoZaplaty());
+        
+        jTable3.getModel().addTableModelListener(new TableModelListener() {
 
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                jTable4.setModel(new TableModel_LekiWPromocji());
+            }
+        });
+ 
 }
 
     /**
