@@ -115,7 +115,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
 
         jLabel1.setText("Jesteś zalogowany jako: ");
 
-        jLabel5.setText("Ofiarowane książki:");
+        jLabel5.setText("Ofiarowane lekii:");
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
