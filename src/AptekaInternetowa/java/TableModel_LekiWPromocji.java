@@ -7,6 +7,7 @@ package AptekaInternetowa.java;
 
 import AptekaInternetowa.models.Lek;
 import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -53,5 +54,44 @@ public class TableModel_LekiWPromocji extends AbstractTableModel {
     public String getColumnName(int col) {
         return columnNames[col];
     }
+    
+    public Class getColumnClass(int c) {
+        switch (c) {
+            case 5:
+                return Boolean.class;
+            default:
+                return String.class;
+        }
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int col) {
+        if(tabLekiwPromocji.get(row).isKupiony() == false)
+            {
+                tabLekiwPromocji.get(row).setKupiony(true);
+                System.out.println("Zmieniono wartosc na true");
+                
+                // tabNoweLeki.add(new Lek(4, "aaa", "bbb", (float) 14.06, 5, true));
+                Lek ks = new Lek(4, "Lek_w_promocji", "Niesamowity_producent", (float) 14.06, 5);
+                JTable JTable4 = new PanelZamowieniaKlienta().getJTable4();
+                JTable4.setValueAt(1, 4, 0);
+                
+                fireTableCellUpdated(0, 4);
+                JTable4.setModel(this);
+                
+                new TableModel_LekiDoZaplaty().setValueAt(0, row, col);
+                           
+                
+                
+                
+            }else{
+                tabLekiwPromocji.get(row).setKupiony(false);
+                System.out.println("Zmieniono wartosc na false - w isCellEditable");
+            }
+        
+            return col == 5;
+    }
+    
+    
 
 }

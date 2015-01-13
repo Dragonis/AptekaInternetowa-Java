@@ -29,9 +29,9 @@ public class DatabaseLayer {
     public ArrayList<Lek> getLekiwPromocji()
     {
         
-        Lek wPromocji1 = new Lek(1, "Ala", "Autor", 50, 30, true);
+        Lek wPromocji1 = new Lek(1, "Ala", "Autor", 50, 30, false);
         Lek wPromocji2 = new Lek(2, "ma", "Autor2", 60, 80, false);
-        Lek wPromocji3 = new Lek(3, "Kota", "Autor3", 70, 40, true);
+        Lek wPromocji3 = new Lek(3, "Kota", "Autor3", 70, 40, false);
         
         set.add(wPromocji1); set.add(wPromocji2); set.add(wPromocji3);
 
