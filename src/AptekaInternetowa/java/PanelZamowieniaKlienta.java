@@ -29,6 +29,8 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
      * Creates new form PanelZamowienia
      */
     
+        ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseLayer()).getLekidoZaplaty();
+
      
     public PanelZamowieniaKlienta() {
         initComponents();
@@ -45,8 +47,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
             public void tableChanged(TableModelEvent e) {
                 //    jTable4.setModel(new TableModel_LekiWPromocji());
     
-    ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseLayer()).getLekidoZaplaty();
-    tabLekiDoZaplaty.add(new Lek(6,"TEST","TEST",14,5));
+    tabLekiDoZaplaty.add(new Lek(e.getFirstRow(),"TEST","TEST",14,5));
     TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
     model.tabLekiDoZaplaty = tabLekiDoZaplaty;
     jTable4.setModel(model);
