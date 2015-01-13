@@ -67,7 +67,7 @@ public class TableModel_LekiDoZaplaty extends AbstractTableModel implements Tabl
         @Override
         public boolean isCellEditable(int row, int col) {
            
-            return col == 4;
+            return false; // col == 4;
             
         }
 
