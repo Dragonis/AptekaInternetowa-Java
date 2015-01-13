@@ -72,7 +72,7 @@ public class TableModel_LekiDoZaplaty extends AbstractTableModel implements Tabl
         }
 
     public void setValueAt(Object value, int row, int col) {
-  tabLekiDoZaplaty.add(new Lek(4, "aaa", "bbb", (float) 14.04, 2));
+  // tabLekiDoZaplaty.add(new Lek(4, "aaa", "bbb", (float) 14.04, 2));
         fireTableCellUpdated(row, col);
       
     }
