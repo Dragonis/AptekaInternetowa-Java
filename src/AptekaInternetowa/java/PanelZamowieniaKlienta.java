@@ -5,6 +5,7 @@
  */
 package AptekaInternetowa.java;
 
+import AptekaInternetowa.models.Lek;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
@@ -14,6 +15,8 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import AptekaInternetowa.models.Uzytkownik;
+import java.util.Collection;
+import java.util.Vector;
 import javax.swing.event.TableModelEvent;
 
 /**
@@ -40,7 +43,15 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
 
             @Override
             public void tableChanged(TableModelEvent e) {
-                jTable4.setModel(new TableModel_LekiWPromocji());
+                //    jTable4.setModel(new TableModel_LekiWPromocji());
+    
+    ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseLayer()).getLekidoZaplaty();
+    tabLekiDoZaplaty.add(new Lek(6,"TEST","TEST",14,5));
+    TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
+    model.tabLekiDoZaplaty = tabLekiDoZaplaty;
+    jTable4.setModel(model);
+                System.out.println("staram sie dodac wartosc do 2 tabeli");
+    
             }
         });
  
