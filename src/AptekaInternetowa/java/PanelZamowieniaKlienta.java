@@ -30,21 +30,21 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
         initComponents();
 
         jLabel2.setText(Uzytkownik.Nazwa);
-        jTable2.setModel(new TableModel_LekiWPromocji());
-        jTable3.setModel(new TableModel_NoweLeki());
-        jTable4.setModel(new TableModel_LekiDoZaplaty());
-        jTable3.getModel().addTableModelListener(new TableModelListener() {
+        jTable_LekiwPromocji.setModel(new TableModel_LekiWPromocji());
+        jTable_NoweLeki.setModel(new TableModel_NoweLeki());
+        jTable_LekiDoZaplaty.setModel(new TableModel_LekiDoZaplaty());
+        jTable_NoweLeki.getModel().addTableModelListener(new TableModelListener() {
 
             @Override
             public void tableChanged(TableModelEvent e) {
-                //    jTable4.setModel(new TableModel_LekiWPromocji());
+                //    jTable_LekiDoZaplaty.setModel(new TableModel_LekiWPromocji());
                 Lek lek = new Lek(e.getFirstRow(), "TEST", "TEST", 14, 5);
 
                 tabLekiDoZaplaty.add(lek);
 
                 TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
                 model.tabLekiDoZaplaty = tabLekiDoZaplaty;
-                jTable4.setModel(model);
+                jTable_LekiDoZaplaty.setModel(model);
 
                 try {
                     new Serialization.SerialisationArrayList().Serializuj();
@@ -60,7 +60,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                 }
             }
         });
-        jTable2.getModel().addTableModelListener(new TableModelListener() {
+        jTable_LekiwPromocji.getModel().addTableModelListener(new TableModelListener() {
 
             @Override
             public void tableChanged(TableModelEvent e) {
@@ -71,7 +71,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
 
                 TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
                 model.tabLekiDoZaplaty = tabLekiDoZaplaty;
-                jTable4.setModel(model);
+                jTable_LekiDoZaplaty.setModel(model);
 
                 try {
                     new Serialization.SerialisationArrayList().Serializuj();
@@ -103,11 +103,11 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        jTable_NoweLeki = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTable_LekiwPromocji = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        jTable_LekiDoZaplaty = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -117,7 +117,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
 
         jLabel5.setText("Ofiarowane lekii:");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_NoweLeki.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -128,11 +128,11 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                 "ID", "Nazwa", "Producent", "Cena"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(jTable_NoweLeki);
 
         jTabbedPane2.addTab("Nowe", jScrollPane3);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_LekiwPromocji.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -143,11 +143,11 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                 "ID", "Nazwa", "Producent", "Cena"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTable_LekiwPromocji);
 
         jTabbedPane2.addTab("W promocji", jScrollPane2);
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_LekiDoZaplaty.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -158,7 +158,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                 "ID", "Nazwa", "Producent", "Cena"
             }
         ));
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane4.setViewportView(jTable_LekiDoZaplaty);
 
         jLabel3.setText("Do zapłaty:");
 
@@ -246,7 +246,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
     }
 
     public JTable getJTable4() {
-        return jTable4;
+        return jTable_LekiDoZaplaty;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -258,8 +258,8 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTable_LekiDoZaplaty;
+    private javax.swing.JTable jTable_LekiwPromocji;
+    private javax.swing.JTable jTable_NoweLeki;
     // End of variables declaration//GEN-END:variables
 }
