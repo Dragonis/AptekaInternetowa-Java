@@ -5,15 +5,12 @@
  */
 package AptekaInternetowa.java;
 
+import AptekaInternetowa.models.Lek;
 import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import AptekaInternetowa.models.Uzytkownik;
+import javax.swing.event.TableModelEvent;
 
 /**
  *
@@ -25,6 +22,8 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
      * Creates new form PanelZamowienia
      */
     
+        ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseLayer()).getLekidoZaplaty();
+
      
     public PanelZamowieniaKlienta() {
         initComponents();
@@ -34,7 +33,22 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
         jTable2.setModel(new TableModel_LekiWPromocji());
         jTable3.setModel(new TableModel_NoweLeki());
         jTable4.setModel(new TableModel_LekiDoZaplaty());
+        
+        jTable3.getModel().addTableModelListener(new TableModelListener() {
 
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                //    jTable4.setModel(new TableModel_LekiWPromocji());
+  Lek lek = new Lek(e.getFirstRow(),"TEST","TEST",14,5);
+ 
+       tabLekiDoZaplaty.add(lek);
+  
+    TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
+    model.tabLekiDoZaplaty = tabLekiDoZaplaty;
+    jTable4.setModel(model);
+           }
+        });
+ 
 }
 
     /**

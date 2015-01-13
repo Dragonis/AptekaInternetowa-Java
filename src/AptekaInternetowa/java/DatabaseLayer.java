@@ -40,13 +40,14 @@ public class DatabaseLayer {
     
     public ArrayList<Lek> getLekidoZaplaty()
     {
-        
+        /*
         Lek doZaplaty1 = new Lek(1, "AAA", "ProducenteA", 50, 30, Boolean.TRUE);
         Lek doZaplaty2 = new Lek(2, "BBB", "ProducentB", 60, 80, Boolean.FALSE);
         Lek doZaplaty3 = new Lek(3, "CCC", "ProducentC", 70, 40, Boolean.TRUE);
         
         set.add(doZaplaty1); set.add(doZaplaty2); set.add(doZaplaty3);
-
+        */
+        
         return set;
     }
 

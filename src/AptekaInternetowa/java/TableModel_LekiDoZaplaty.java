@@ -19,7 +19,7 @@ import javax.swing.table.AbstractTableModel;
 public class TableModel_LekiDoZaplaty extends AbstractTableModel implements TableModelListener {
 
     private String[] columnNames = {"ID", "Nazwa", "Producent", "Cena", "Sztuk"};
-    private ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseLayer()).getLekidoZaplaty();
+     ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseLayer()).getLekidoZaplaty();
 
     @Override
     public int getRowCount() {
@@ -72,7 +72,7 @@ public class TableModel_LekiDoZaplaty extends AbstractTableModel implements Tabl
         }
 
     public void setValueAt(Object value, int row, int col) {
-  tabLekiDoZaplaty.add(new Lek(4, "aaa", "bbb", (float) 14.04, 2));
+  // tabLekiDoZaplaty.add(new Lek(4, "aaa", "bbb", (float) 14.04, 2));
         fireTableCellUpdated(row, col);
       
     }

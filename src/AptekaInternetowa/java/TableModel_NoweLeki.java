@@ -123,7 +123,7 @@ public class TableModel_NoweLeki extends AbstractTableModel implements TableMode
     
     public void setValueAt(Object value, int row, int col) {
         
-        fireTableCellUpdated(row, col);
+       // fireTableCellUpdated(row, col);
     }
     
 
