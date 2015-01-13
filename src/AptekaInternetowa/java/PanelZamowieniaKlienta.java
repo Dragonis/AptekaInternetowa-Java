@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
 import AptekaInternetowa.models.Uzytkownik;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.event.TableModelEvent;
 
 /**
@@ -46,6 +49,19 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
     TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
     model.tabLekiDoZaplaty = tabLekiDoZaplaty;
     jTable4.setModel(model);
+    
+                try {
+                    new Serialization.SerialisationArrayList().Serializuj();
+                } catch (IOException ex) {
+                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    new Serialization.SerialisationArrayList().Deserializuj();
+                } catch (IOException ex) {
+                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
+                }
            }
         });
  
