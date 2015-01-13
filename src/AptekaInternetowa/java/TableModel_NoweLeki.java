@@ -76,7 +76,7 @@ public class TableModel_NoweLeki extends AbstractTableModel implements TableMode
                 tabNoweLeki.get(row).setKupiony(true);
                 System.out.println("Zmieniono wartosc na true");
                 
-                tabNoweLeki.add(new Lek(4, "aaa", "bbb", (float) 14.06, 5, true));
+                // tabNoweLeki.add(new Lek(4, "aaa", "bbb", (float) 14.06, 5, true));
                 Lek ks = new Lek(4, "aaa", "bbb", (float) 14.06, 5);
                 JTable JTable4 = new PanelZamowieniaKlienta().getJTable4();
                 JTable4.setValueAt(1, 4, 0);

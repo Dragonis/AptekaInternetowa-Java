@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
 import AptekaInternetowa.models.Uzytkownik;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.event.TableModelEvent;
 
 /**
@@ -21,35 +24,71 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
     /**
      * Creates new form PanelZamowienia
      */
-    
-        ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseLayer()).getLekidoZaplaty();
+    ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseLayer()).getLekidoZaplaty();
 
-     
     public PanelZamowieniaKlienta() {
         initComponents();
-   
+
         jLabel2.setText(Uzytkownik.Nazwa);
-        
         jTable2.setModel(new TableModel_LekiWPromocji());
         jTable3.setModel(new TableModel_NoweLeki());
         jTable4.setModel(new TableModel_LekiDoZaplaty());
-        
         jTable3.getModel().addTableModelListener(new TableModelListener() {
 
             @Override
             public void tableChanged(TableModelEvent e) {
                 //    jTable4.setModel(new TableModel_LekiWPromocji());
-  Lek lek = new Lek(e.getFirstRow(),"TEST","TEST",14,5);
- 
-       tabLekiDoZaplaty.add(lek);
-  
-    TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
-    model.tabLekiDoZaplaty = tabLekiDoZaplaty;
-    jTable4.setModel(model);
-           }
+                Lek lek = new Lek(e.getFirstRow(), "TEST", "TEST", 14, 5);
+
+                tabLekiDoZaplaty.add(lek);
+
+                TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
+                model.tabLekiDoZaplaty = tabLekiDoZaplaty;
+                jTable4.setModel(model);
+
+                try {
+                    new Serialization.SerialisationArrayList().Serializuj();
+                } catch (IOException ex) {
+                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    new Serialization.SerialisationArrayList().Deserializuj();
+                } catch (IOException ex) {
+                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         });
- 
-}
+        jTable2.getModel().addTableModelListener(new TableModelListener() {
+
+            @Override
+            public void tableChanged(TableModelEvent e) {
+          
+             Lek lek = new Lek(e.getFirstRow(), "TABELA_2", "TEST_2", 14, 5);
+
+                tabLekiDoZaplaty.add(lek);
+
+                TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
+                model.tabLekiDoZaplaty = tabLekiDoZaplaty;
+                jTable4.setModel(model);
+
+                try {
+                    new Serialization.SerialisationArrayList().Serializuj();
+                } catch (IOException ex) {
+                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    new Serialization.SerialisationArrayList().Deserializuj();
+                } catch (IOException ex) {
+                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
+        });
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,7 +115,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
 
         jLabel1.setText("Jesteś zalogowany jako: ");
 
-        jLabel5.setText("Ofiarowane książki:");
+        jLabel5.setText("Ofiarowane lekii:");
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -205,9 +244,8 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
             }
         });
     }
-    
-    public JTable getJTable4()
-    {
+
+    public JTable getJTable4() {
         return jTable4;
     }
 
