@@ -35,6 +35,14 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
     public PanelZamowieniaKlienta() {
         initComponents();
 
+                 try {
+                    DatabaseSingleton db = new DatabaseSingleton();
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        
         jLabel2.setText(Uzytkownik.Nazwa);
         jTable_LekiwPromocji.setModel(new TableModel_LekiWPromocji());
         jTable_NoweLeki.setModel(new TableModel_NoweLeki());
@@ -51,13 +59,6 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                 TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
                 model.tabLekiDoZaplaty = tabLekiDoZaplaty;
                 jTable_LekiDoZaplaty.setModel(model);
-                
-                  try {
-                    bazadanych();
-                } catch (ClassNotFoundException | SQLException ex) {
-                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
             }
             
         });
@@ -72,37 +73,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
         });
     }
 
-    public void bazadanych() throws ClassNotFoundException, SQLException {
-        Class.forName("org.sqlite.JDBC");
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:test.db")) {
-            Statement stat = conn.createStatement();
-            stat.executeUpdate("drop table if exists people;");
-            stat.executeUpdate("create table people (name, occupation);");
-            PreparedStatement prep = conn.prepareStatement(
-                    "insert into people values (?, ?);");
-            
-            prep.setString(1, "Gandhi");
-            prep.setString(2, "politics");
-            prep.addBatch();
-            prep.setString(1, "Turing");
-            prep.setString(2, "computers");
-            prep.addBatch();
-            prep.setString(1, "Wittgenstein");
-            prep.setString(2, "smartypants");
-            prep.addBatch();
-            
-            conn.setAutoCommit(false);
-            prep.executeBatch();
-            conn.setAutoCommit(true);
-            
-            try (ResultSet rs = stat.executeQuery("select * from people;")) {
-                while (rs.next()) {
-                    System.out.println("name = " + rs.getString("name"));
-                    System.out.println("job = " + rs.getString("occupation"));
-                }
-            }
-        }
-    }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -257,7 +228,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
             public void run() {
                 new PanelZamowieniaKlienta().setVisible(true);
                 
-                
+              
               
             }
         });

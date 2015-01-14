@@ -19,75 +19,59 @@ import java.util.LinkedList;
  *
  * @author student
  */
-public class DatabaseSingleton {
+public final class DatabaseSingleton {
+
+    Connection conn = null;
+    Statement stat = null;
     
-    // http://javastart.pl/static/zaawansowane-programowanie/bazy-danych-sqlite-w-javie/
+    public DatabaseSingleton() throws ClassNotFoundException, SQLException {
+        
+        Initialization();
+        createTable();
+        insrtData();
+        showData();
+        
+        conn.close();
+    }
     
-     public static final String DRIVER = "org.sqlite.JDBC";
-    public static final String DB_URL = "jdbc:sqlite:AptekaInternetowa.db";
- 
-    private Connection conn;
-    private Statement stat;
- 
-    public DatabaseSingleton() throws SQLException {
-        try {
-            Class.forName(DatabaseSingleton.DRIVER);
-        } catch (ClassNotFoundException e) {
-            System.err.println("Brak sterownika JDBC");
-            e.printStackTrace();
+    public void Initialization() throws ClassNotFoundException, SQLException
+    {
+        Class.forName("org.sqlite.JDBC");
+        conn  = DriverManager.getConnection("jdbc:sqlite:test.db");
+        stat  = conn.createStatement();
+    }
+    public void insrtData() throws ClassNotFoundException, SQLException
+    {
+        PreparedStatement prep = conn.prepareStatement(
+            "insert into people values (?, ?);");
+
+        prep.setString(1, "Gandhi");
+        prep.setString(2, "politics");
+        prep.addBatch();
+        prep.setString(1, "Turing");
+        prep.setString(2, "computers");
+        prep.addBatch();
+        prep.setString(1, "Wittgenstein");
+        prep.setString(2, "smartypants");
+        prep.addBatch();
+
+        conn.setAutoCommit(false);
+        prep.executeBatch();
+        conn.setAutoCommit(true);
+    
+       }
+
+    public void showData() throws SQLException {
+        ResultSet rs = stat.executeQuery("select * from people;");
+        while (rs.next()) {
+            System.out.println("name = " + rs.getString("name"));
+            System.out.println("job = " + rs.getString("occupation"));
         }
- 
-        try {
-            conn = DriverManager.getConnection(DB_URL);
-            stat = conn.createStatement();
-        } catch (SQLException e) {
-            System.err.println("Problem z otwarciem polaczenia");
-            e.printStackTrace();
-        }
- 
-        createTables();
+        rs.close();
     }
 
-     public boolean createTables() throws SQLException  {
-        String stworzTabele_Leki = "CREATE TABLE IF NOT EXISTS leki (id_leku INTEGER PRIMARY KEY AUTOINCREMENT, nazwa varchar(255), producent varchar(255), kupiony boolean)";
-        stat.execute(stworzTabele_Leki);
-        return true;
+    public void createTable() throws SQLException {
+        stat.executeUpdate("drop table if exists people;");
+        stat.executeUpdate("create table people (name, occupation);");
     }
- 
-    public boolean insertLek(int id, String nazwa, String producent, Boolean kupiony) {
-        try {
-            PreparedStatement prepStmt = conn.prepareStatement(
-                    "insert into leki values (6, '6', '6', true);");
-            prepStmt.setInt(1, id);
-            prepStmt.setString(2, nazwa);
-            prepStmt.setString(3, producent);
-            prepStmt.setBoolean(4, kupiony);
-            prepStmt.execute();
-        } catch (SQLException e) {
-            System.err.println("Blad przy wstawianiu Leku (blad po stronie SQL)");
-            e.printStackTrace();
-            return false;
-        }
-        return true;
     }
-    
-     public ArrayList<Lek> selectLeki() throws SQLException {
-        ArrayList<Lek> tablicaLekow = new ArrayList<Lek>();
-        ResultSet result = stat.executeQuery("SELECT * FROM leki");
-        int id;
-        String nazwa, producent;
-        Boolean kupiony;
-        while(result.next()) {
-            id = result.getInt("id");
-            nazwa = result.getString("nazwa");
-            producent = result.getString("producent");
-            kupiony = result.getBoolean("kupiony");
-            tablicaLekow.add(new Lek());
-        }
-        return tablicaLekow;
-    }
-    
-     public void closeConnection() throws SQLException {
-         conn.close();
-    }
-}

@@ -7,6 +7,9 @@ package AptekaInternetowa.java;
 
 import javax.swing.JOptionPane;
 import AptekaInternetowa.models.Uzytkownik;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -176,6 +179,8 @@ public class PanelLogowania extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PanelLogowania().setVisible(true);
+                
+                  
             }
         });
     }
