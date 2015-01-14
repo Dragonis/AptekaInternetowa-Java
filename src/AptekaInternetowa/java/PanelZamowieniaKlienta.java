@@ -35,13 +35,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
     public PanelZamowieniaKlienta() {
         initComponents();
 
-                 try {
-                    DatabaseSingleton db = new DatabaseSingleton();
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
         
         jLabel2.setText(Uzytkownik.Nazwa);
         jTable_LekiwPromocji.setModel(new TableModel_LekiWPromocji());

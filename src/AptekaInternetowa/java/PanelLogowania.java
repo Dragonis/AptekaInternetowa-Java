@@ -180,7 +180,13 @@ public class PanelLogowania extends javax.swing.JFrame {
             public void run() {
                 new PanelLogowania().setVisible(true);
                 
-                  
+                   try {
+                    DatabaseSingleton db = new DatabaseSingleton();
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

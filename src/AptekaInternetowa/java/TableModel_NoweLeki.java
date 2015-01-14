@@ -21,9 +21,9 @@ import javax.swing.table.TableModel;
  */
 public class TableModel_NoweLeki extends AbstractTableModel implements TableModelListener {
 
-    private String[] columnNames = {"ID", "Nazwa", "Producent","Cena","Sztuk","Kupiony"};
-    private ArrayList<Lek> tabNoweLeki = (new DatabaseLayer()).getNoweLeki();
-    private ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseLayer()).getLekidoZaplaty();
+    String[] columnNames = {"ID", "Nazwa", "Producent","Cena","Sztuk","Kupiony"};
+    ArrayList<Lek> tabNoweLeki = (new DatabaseLayer()).getNoweLeki();
+    ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseLayer()).getLekidoZaplaty();
 
     public TableModel_NoweLeki() {
         addTableModelListener(this);
