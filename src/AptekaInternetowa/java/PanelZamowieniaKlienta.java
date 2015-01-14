@@ -46,19 +46,8 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                 model.tabLekiDoZaplaty = tabLekiDoZaplaty;
                 jTable_LekiDoZaplaty.setModel(model);
 
-                try {
-                    new Serialization.SerialisationArrayList().Serializuj();
-                } catch (IOException ex) {
-                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                try {
-                    new Serialization.SerialisationArrayList().Deserializuj();
-                } catch (IOException ex) {
-                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
-                }
             }
+            
         });
         jTable_LekiwPromocji.getModel().addTableModelListener(new TableModelListener() {
 
@@ -73,19 +62,6 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                 model.tabLekiDoZaplaty = tabLekiDoZaplaty;
                 jTable_LekiDoZaplaty.setModel(model);
 
-                try {
-                    new Serialization.SerialisationArrayList().Serializuj();
-                } catch (IOException ex) {
-                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                try {
-                    new Serialization.SerialisationArrayList().Deserializuj();
-                } catch (IOException ex) {
-                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
             }
         });
     }
