@@ -17,6 +17,8 @@ import java.util.logging.Logger;
  */
 public class PanelLogowania extends javax.swing.JFrame {
    
+    public static DatabaseSingleton db;
+            
     public PanelLogowania() {
         initComponents();
 
@@ -181,7 +183,7 @@ public class PanelLogowania extends javax.swing.JFrame {
                 new PanelLogowania().setVisible(true);
                 
                    try {
-                    DatabaseSingleton db = new DatabaseSingleton();
+                    db = new DatabaseSingleton();
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {

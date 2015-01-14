@@ -5,6 +5,7 @@
  */
 package AptekaInternetowa.java;
 
+import static AptekaInternetowa.java.PanelLogowania.db;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
@@ -236,7 +237,9 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
                 Lek lek = new Lek(e.getFirstRow(), nazwa , produkt, cena, sztuk);
 
                 listaLekow.add(lek);
-
+                
+                // db.insrtData();
+                
                 TableModel_NoweLeki model = new TableModel_NoweLeki();
                 model.tabNoweLeki = listaLekow;
                 jTable3.setModel(model);

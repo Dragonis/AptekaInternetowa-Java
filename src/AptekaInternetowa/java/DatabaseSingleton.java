@@ -28,7 +28,7 @@ public final class DatabaseSingleton {
         
         Initialization();
         createTable();
-        insrtData();
+        insertData("nazwa","producent", (float) 14, 4);
         showData();
         
         conn.close();
@@ -40,21 +40,17 @@ public final class DatabaseSingleton {
         conn  = DriverManager.getConnection("jdbc:sqlite:test.db");
         stat  = conn.createStatement();
     }
-    public void insrtData() throws ClassNotFoundException, SQLException
+    public void insertData(String nazwa, String producent, Float cena, Integer sztuk) throws ClassNotFoundException, SQLException
     {
         PreparedStatement prep = conn.prepareStatement(
-            "insert into people values (?, ?);");
+            "insert into leki values (?, ?, ?, ?);");
 
-        prep.setString(1, "Gandhi");
-        prep.setString(2, "politics");
+        prep.setString(1, nazwa);
+        prep.setString(2, producent);
+        prep.setFloat(3, cena);
+        prep.setInt(4, sztuk);
         prep.addBatch();
-        prep.setString(1, "Turing");
-        prep.setString(2, "computers");
-        prep.addBatch();
-        prep.setString(1, "Wittgenstein");
-        prep.setString(2, "smartypants");
-        prep.addBatch();
-
+        
         conn.setAutoCommit(false);
         prep.executeBatch();
         conn.setAutoCommit(true);
@@ -62,16 +58,18 @@ public final class DatabaseSingleton {
        }
 
     public void showData() throws SQLException {
-        ResultSet rs = stat.executeQuery("select * from people;");
+        ResultSet rs = stat.executeQuery("select * from leki;");
         while (rs.next()) {
-            System.out.println("name = " + rs.getString("name"));
-            System.out.println("job = " + rs.getString("occupation"));
+            System.out.println("nazwa = " + rs.getString("nazwa"));
+            System.out.println("producent= " + rs.getString("producent"));
+            System.out.println("cena= " + rs.getFloat("cena"));
+            System.out.println("sztuk= " + rs.getInt("sztuk"));
         }
         rs.close();
     }
 
     public void createTable() throws SQLException {
-        stat.executeUpdate("drop table if exists people;");
-        stat.executeUpdate("create table people (name, occupation);");
+        stat.executeUpdate("drop table if exists leki;");
+        stat.executeUpdate("create table leki (nazwa,producent,cena,sztuk);");
     }
     }
