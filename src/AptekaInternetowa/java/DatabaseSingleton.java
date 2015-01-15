@@ -54,6 +54,8 @@ public final class DatabaseSingleton {
         conn.setAutoCommit(false);
         prep.executeBatch();
         conn.setAutoCommit(true);
+        
+        
     
        }
 

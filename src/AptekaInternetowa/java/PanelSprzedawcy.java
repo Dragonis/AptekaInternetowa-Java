@@ -24,7 +24,7 @@ import javax.swing.table.TableModel;
 public class PanelSprzedawcy extends javax.swing.JFrame {
 
     ArrayList<Lek> listaLekow = new ArrayList<Lek>();
-     
+    
     public PanelSprzedawcy() {
         initComponents();
    
@@ -122,9 +122,17 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
             }
         });
 
+        txt_Cena.setText("1");
+
         jLabel3.setText("Nazwa:");
 
+        txt_Nazwa.setText("aaa");
+
+        txt_Producent.setText("aaa");
+
         jLabel9.setText("Sztuk:");
+
+        txt_Sztuk.setText("1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -225,16 +233,14 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bttn_DodajLekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttn_DodajLekActionPerformed
+        
+        Integer id = new TableModel_NoweLeki().getRowCount() + 1;
         String nazwa = txt_Nazwa.getText();
         String produkt = txt_Producent.getText();
         Float cena = Float.parseFloat( txt_Cena.getText() );
         Integer sztuk = Integer.parseInt( txt_Sztuk.getText() );
         
-        jTable3.getModel().addTableModelListener( new TableModelListener() {
-
-            @Override
-            public void tableChanged(TableModelEvent e) {
-                Lek lek = new Lek(e.getFirstRow(), nazwa , produkt, cena, sztuk);
+         Lek lek = new Lek(0, nazwa , produkt, cena, sztuk);
 
                 listaLekow.add(lek);
                 
@@ -242,10 +248,9 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
                 
                 TableModel_NoweLeki model = new TableModel_NoweLeki();
                 model.tabNoweLeki = listaLekow;
+                
                 jTable3.setModel(model);
                 
-            }
-        } );
     }//GEN-LAST:event_bttn_DodajLekActionPerformed
 
     /**

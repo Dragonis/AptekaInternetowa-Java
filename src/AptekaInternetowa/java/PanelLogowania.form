@@ -108,12 +108,12 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="user"/>
+        <Property name="text" type="java.lang.String" value="root"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="user"/>
+        <Property name="text" type="java.lang.String" value="root"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">

@@ -118,11 +118,11 @@ public class TableModel_NoweLeki extends AbstractTableModel implements TableMode
         Object data = model.getValueAt(row, column);
 
         tabLekiDoZaplaty.add(new Lek(4, "aaa", "bbb", (float) 14.06, 5, true));
-                
     }
     
     public void setValueAt(Object value, int row, int col) {
         
+       //  fireTableDataChanged();
        // fireTableCellUpdated(row, col);
     }
     
