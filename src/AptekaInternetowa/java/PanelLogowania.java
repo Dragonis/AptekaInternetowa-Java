@@ -7,6 +7,9 @@ package AptekaInternetowa.java;
 
 import javax.swing.JOptionPane;
 import AptekaInternetowa.models.Uzytkownik;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,6 +17,7 @@ import AptekaInternetowa.models.Uzytkownik;
  */
 public class PanelLogowania extends javax.swing.JFrame {
    
+    
     public PanelLogowania() {
         initComponents();
 
@@ -50,9 +54,9 @@ public class PanelLogowania extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("user");
+        jTextField1.setText("root");
 
-        jTextField2.setText("user");
+        jTextField2.setText("root");
 
         jLabel3.setText("Panel Administracyjny - Apteka Internetowa");
 
@@ -123,8 +127,7 @@ public class PanelLogowania extends javax.swing.JFrame {
             Uzytkownik.Haslo = jTextField2.getText();
             pack();
             new PanelZamowieniaKlienta().setVisible(true);
-            
-  
+          
             System.out.println("Zostales zalogowany jako user");
         }
         else if(jTextField1.getText().equals("root") && jTextField2.getText().equals("root"))
@@ -176,6 +179,7 @@ public class PanelLogowania extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PanelLogowania().setVisible(true);
+             
             }
         });
     }

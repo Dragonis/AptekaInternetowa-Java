@@ -16,7 +16,7 @@ public class DatabaseLayer {
         ArrayList<Lek> set = new ArrayList();
 
     public ArrayList<Lek> getNoweLeki() {
-
+        
         Lek nowe1 = new Lek(1, "Lek1", "Producent", 50, 30, false);
         Lek nowe2 = new Lek(2, "lek2", "Producent2", 60, 80, false);
         Lek nowe3 = new Lek(3, "lek3", "Producent3", 70, 40, false);
