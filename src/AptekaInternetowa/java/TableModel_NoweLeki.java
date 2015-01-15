@@ -21,9 +21,9 @@ import javax.swing.table.TableModel;
  */
 public class TableModel_NoweLeki extends AbstractTableModel implements TableModelListener {
 
-    private String[] columnNames = {"ID", "Nazwa", "Producent","Cena","Sztuk","Kupiony"};
-    private ArrayList<Lek> tabNoweLeki = (new DatabaseLayer()).getNoweLeki();
-    private ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseLayer()).getLekidoZaplaty();
+    String[] columnNames = {"ID", "Nazwa", "Producent","Cena","Sztuk","Kupiony"};
+    ArrayList<Lek> tabNoweLeki = (new DatabaseLayer()).getNoweLeki();
+    ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseLayer()).getLekidoZaplaty();
 
     public TableModel_NoweLeki() {
         addTableModelListener(this);
@@ -76,7 +76,7 @@ public class TableModel_NoweLeki extends AbstractTableModel implements TableMode
                 tabNoweLeki.get(row).setKupiony(true);
                 System.out.println("Zmieniono wartosc na true");
                 
-                tabNoweLeki.add(new Lek(4, "aaa", "bbb", (float) 14.06, 5, true));
+                // tabNoweLeki.add(new Lek(4, "aaa", "bbb", (float) 14.06, 5, true));
                 Lek ks = new Lek(4, "aaa", "bbb", (float) 14.06, 5);
                 JTable JTable4 = new PanelZamowieniaKlienta().getJTable4();
                 JTable4.setValueAt(1, 4, 0);
@@ -118,11 +118,11 @@ public class TableModel_NoweLeki extends AbstractTableModel implements TableMode
         Object data = model.getValueAt(row, column);
 
         tabLekiDoZaplaty.add(new Lek(4, "aaa", "bbb", (float) 14.06, 5, true));
-                
     }
     
     public void setValueAt(Object value, int row, int col) {
         
+       //  fireTableDataChanged();
        // fireTableCellUpdated(row, col);
     }
     

@@ -10,6 +10,15 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
 import AptekaInternetowa.models.Uzytkownik;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.event.TableModelEvent;
 
 /**
@@ -21,35 +30,44 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
     /**
      * Creates new form PanelZamowienia
      */
-    
-        ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseLayer()).getLekidoZaplaty();
+    ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseLayer()).getLekidoZaplaty();
 
-     
     public PanelZamowieniaKlienta() {
         initComponents();
-   
+
+                
+        
         jLabel2.setText(Uzytkownik.Nazwa);
-        
-        jTable2.setModel(new TableModel_LekiWPromocji());
-        jTable3.setModel(new TableModel_NoweLeki());
-        jTable4.setModel(new TableModel_LekiDoZaplaty());
-        
-        jTable3.getModel().addTableModelListener(new TableModelListener() {
+        jTable_LekiwPromocji.setModel(new TableModel_LekiWPromocji());
+        jTable_NoweLeki.setModel(new TableModel_NoweLeki());
+        jTable_LekiDoZaplaty.setModel(new TableModel_LekiDoZaplaty());
+        jTable_NoweLeki.getModel().addTableModelListener(new TableModelListener() {
 
             @Override
             public void tableChanged(TableModelEvent e) {
-                //    jTable4.setModel(new TableModel_LekiWPromocji());
-  Lek lek = new Lek(e.getFirstRow(),"TEST","TEST",14,5);
- 
-       tabLekiDoZaplaty.add(lek);
-  
-    TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
-    model.tabLekiDoZaplaty = tabLekiDoZaplaty;
-    jTable4.setModel(model);
-           }
+                //    jTable_LekiDoZaplaty.setModel(new TableModel_LekiWPromocji());
+                Lek lek = new Lek(e.getFirstRow(), "TEST", "TEST", 14, 5);
+
+                tabLekiDoZaplaty.add(lek);
+
+                TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
+                model.tabLekiDoZaplaty = tabLekiDoZaplaty;
+                jTable_LekiDoZaplaty.setModel(model);
+            }
+            
         });
- 
-}
+        jTable_LekiwPromocji.getModel().addTableModelListener((TableModelEvent e) -> {
+            Lek lek = new Lek(e.getFirstRow(), "TABELA_2", "TEST_2", 14, 5);
+            
+            tabLekiDoZaplaty.add(lek);
+            
+            TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
+            model.tabLekiDoZaplaty = tabLekiDoZaplaty;
+            jTable_LekiDoZaplaty.setModel(model);
+        });
+    }
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,11 +82,11 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        jTable_NoweLeki = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTable_LekiwPromocji = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        jTable_LekiDoZaplaty = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -76,9 +94,9 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
 
         jLabel1.setText("Jesteś zalogowany jako: ");
 
-        jLabel5.setText("Ofiarowane książki:");
+        jLabel5.setText("Ofiarowane lekii:");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_NoweLeki.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -89,11 +107,11 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                 "ID", "Nazwa", "Producent", "Cena"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(jTable_NoweLeki);
 
         jTabbedPane2.addTab("Nowe", jScrollPane3);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_LekiwPromocji.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -104,11 +122,11 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                 "ID", "Nazwa", "Producent", "Cena"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTable_LekiwPromocji);
 
         jTabbedPane2.addTab("W promocji", jScrollPane2);
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_LekiDoZaplaty.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -119,7 +137,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                 "ID", "Nazwa", "Producent", "Cena"
             }
         ));
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane4.setViewportView(jTable_LekiDoZaplaty);
 
         jLabel3.setText("Do zapłaty:");
 
@@ -200,15 +218,18 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new PanelZamowieniaKlienta().setVisible(true);
+                
+              
+              
             }
         });
     }
-    
-    public JTable getJTable4()
-    {
-        return jTable4;
+
+    public JTable getJTable4() {
+        return jTable_LekiDoZaplaty;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -220,8 +241,8 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTable_LekiDoZaplaty;
+    private javax.swing.JTable jTable_LekiwPromocji;
+    private javax.swing.JTable jTable_NoweLeki;
     // End of variables declaration//GEN-END:variables
 }

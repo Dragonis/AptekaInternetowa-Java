@@ -12,6 +12,14 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import AptekaInternetowa.models.Lek;
 import AptekaInternetowa.models.Uzytkownik;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -19,11 +27,11 @@ import AptekaInternetowa.models.Uzytkownik;
  */
 public class PanelSprzedawcy extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PanelZamowienia
-     */
+    ArrayList<Lek> listaLekow_NoweLeki = new ArrayList<Lek>();
+    ArrayList<Lek> listaLekow_wPromocji = new ArrayList<Lek>();
+    ArrayList<Lek> listaLekow_wszystkieLeki = new ArrayList<Lek>();
+    DatabaseSingleton db = null;
     
-     
     public PanelSprzedawcy() {
         initComponents();
    
@@ -55,7 +63,17 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        bttn_DodajLek = new javax.swing.JButton();
+        txt_Cena = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txt_Nazwa = new javax.swing.JTextField();
+        txt_Producent = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txt_Sztuk = new javax.swing.JTextField();
+        usunDB_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,10 +117,83 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
 
         jLabel6.setText("Uzytkownik moze tylko zaznaczac ktore leki chce kupic");
 
-        jButton1.setText("Dodaj lek");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dodaj lek"));
+
+        jLabel7.setText("Producent:");
+
+        jLabel8.setText("Cena:");
+
+        bttn_DodajLek.setText("Dodaj");
+        bttn_DodajLek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bttn_DodajLekActionPerformed(evt);
+            }
+        });
+
+        txt_Cena.setText("1");
+
+        jLabel3.setText("Nazwa:");
+
+        txt_Nazwa.setText("aaa");
+
+        txt_Producent.setText("aaa");
+
+        jLabel9.setText("Sztuk:");
+
+        txt_Sztuk.setText("1");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(txt_Nazwa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txt_Producent))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(txt_Cena, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_Sztuk, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(bttn_DodajLek)))
+                .addGap(0, 59, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_Nazwa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_Producent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_Cena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_Sztuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(bttn_DodajLek)
+                .addContainerGap())
+        );
+
+        usunDB_button.setText("usuń bazę danych");
+        usunDB_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usunDB_buttonActionPerformed(evt);
             }
         });
 
@@ -114,27 +205,35 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel2))
-                            .addComponent(jLabel5)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel4))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jButton1)))
-                .addContainerGap(76, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(184, 184, 184)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel2))
+                                    .addComponent(jLabel5)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(149, 149, 149)
+                                .addComponent(usunDB_button)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -143,21 +242,80 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(jLabel4)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
-                .addGap(41, 41, 41)
-                .addComponent(jButton1)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(usunDB_button)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void bttn_DodajLekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttn_DodajLekActionPerformed
+        
+        Integer id = new TableModel_NoweLeki().getRowCount() + 1;
+        String nazwa = txt_Nazwa.getText();
+        String producent = txt_Producent.getText();
+        Float cena = Float.parseFloat( txt_Cena.getText() );
+        Integer sztuk = Integer.parseInt( txt_Sztuk.getText() );
+        
+         Lek lek = new Lek(0, nazwa , producent, cena, sztuk);
+                
+                if(jTabbedPane2.getSelectedIndex() == 0)
+                {
+                    listaLekow_NoweLeki.add(lek);
+                }
+                else if (jTabbedPane2.getSelectedIndex() == 1)
+                {
+                    listaLekow_wPromocji.add(lek);
+                }
+                listaLekow_wszystkieLeki.add(lek);
+        try {
+            db = new DatabaseSingleton();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PanelSprzedawcy.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PanelSprzedawcy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            db.insertData(nazwa, producent, cena, sztuk);
+            db.showData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PanelSprzedawcy.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PanelSprzedawcy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+                TableModel_NoweLeki model = new TableModel_NoweLeki();
+                TableModel_LekiWPromocji model2 = new TableModel_LekiWPromocji();
+                model.tabNoweLeki = listaLekow_NoweLeki;
+                model2.tabLekiwPromocji = listaLekow_wPromocji;
+                if(jTabbedPane2.getSelectedIndex() == 0)
+                {
+                jTable3.setModel(model);
+                }else if(jTabbedPane2.getSelectedIndex() == 1)
+                {
+                    jTable2.setModel(model2);   
+                }               
+                
+    }//GEN-LAST:event_bttn_DodajLekActionPerformed
+
+    private void usunDB_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usunDB_buttonActionPerformed
+        try {
+            db = new DatabaseSingleton();
+            db.usunDB();
+            JOptionPane.showMessageDialog(rootPane, "Usunięto DB");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PanelSprzedawcy.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PanelSprzedawcy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_usunDB_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,16 +356,26 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bttn_DodajLek;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTextField txt_Cena;
+    private javax.swing.JTextField txt_Nazwa;
+    private javax.swing.JTextField txt_Producent;
+    private javax.swing.JTextField txt_Sztuk;
+    private javax.swing.JButton usunDB_button;
     // End of variables declaration//GEN-END:variables
 }
