@@ -30,7 +30,10 @@ public final class DatabaseSingleton {
         createTable();
         insertData("nazwa","producent", (float) 14, 4);
         showData();
-        
+        // closeConnection();
+    }
+
+    public void closeConnection() throws SQLException {
         conn.close();
     }
     
@@ -68,10 +71,15 @@ public final class DatabaseSingleton {
             System.out.println("sztuk= " + rs.getInt("sztuk"));
         }
         rs.close();
+        
     }
 
     public void createTable() throws SQLException {
-        stat.executeUpdate("drop table if exists leki;");
-        stat.executeUpdate("create table leki (nazwa,producent,cena,sztuk);");
+         stat.executeUpdate("drop table if exists leki;");
+         stat.executeUpdate("create table leki (nazwa,producent,cena,sztuk);");
     }
+
+
+
+   
     }

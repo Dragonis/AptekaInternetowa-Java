@@ -13,6 +13,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import AptekaInternetowa.models.Lek;
 import AptekaInternetowa.models.Uzytkownik;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTabbedPane;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
@@ -27,6 +30,7 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
     ArrayList<Lek> listaLekow_NoweLeki = new ArrayList<Lek>();
     ArrayList<Lek> listaLekow_wPromocji = new ArrayList<Lek>();
     ArrayList<Lek> listaLekow_wszystkieLeki = new ArrayList<Lek>();
+    DatabaseSingleton db = null;
     
     public PanelSprzedawcy() {
         initComponents();
@@ -239,11 +243,11 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
         
         Integer id = new TableModel_NoweLeki().getRowCount() + 1;
         String nazwa = txt_Nazwa.getText();
-        String produkt = txt_Producent.getText();
+        String producent = txt_Producent.getText();
         Float cena = Float.parseFloat( txt_Cena.getText() );
         Integer sztuk = Integer.parseInt( txt_Sztuk.getText() );
         
-         Lek lek = new Lek(0, nazwa , produkt, cena, sztuk);
+         Lek lek = new Lek(0, nazwa , producent, cena, sztuk);
                 
                 if(jTabbedPane2.getSelectedIndex() == 0)
                 {
@@ -254,7 +258,20 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
                     listaLekow_wPromocji.add(lek);
                 }
                 listaLekow_wszystkieLeki.add(lek);
-                // db.insrtData();
+        try {
+            db = new DatabaseSingleton();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PanelSprzedawcy.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PanelSprzedawcy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            db.insertData(nazwa, producent, cena, sztuk);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PanelSprzedawcy.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PanelSprzedawcy.class.getName()).log(Level.SEVERE, null, ex);
+        }
                 
                 TableModel_NoweLeki model = new TableModel_NoweLeki();
                 TableModel_LekiWPromocji model2 = new TableModel_LekiWPromocji();
