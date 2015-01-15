@@ -24,7 +24,9 @@ import javax.swing.table.TableModel;
  */
 public class PanelSprzedawcy extends javax.swing.JFrame {
 
-    ArrayList<Lek> listaLekow = new ArrayList<Lek>();
+    ArrayList<Lek> listaLekow_NoweLeki = new ArrayList<Lek>();
+    ArrayList<Lek> listaLekow_wPromocji = new ArrayList<Lek>();
+    ArrayList<Lek> listaLekow_wszystkieLeki = new ArrayList<Lek>();
     
     public PanelSprzedawcy() {
         initComponents();
@@ -242,15 +244,22 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
         Integer sztuk = Integer.parseInt( txt_Sztuk.getText() );
         
          Lek lek = new Lek(0, nazwa , produkt, cena, sztuk);
-
-                listaLekow.add(lek);
                 
+                if(jTabbedPane2.getSelectedIndex() == 0)
+                {
+                    listaLekow_NoweLeki.add(lek);
+                }
+                else if (jTabbedPane2.getSelectedIndex() == 1)
+                {
+                    listaLekow_wPromocji.add(lek);
+                }
+                listaLekow_wszystkieLeki.add(lek);
                 // db.insrtData();
                 
                 TableModel_NoweLeki model = new TableModel_NoweLeki();
                 TableModel_LekiWPromocji model2 = new TableModel_LekiWPromocji();
-                model.tabNoweLeki = listaLekow;
-                model2.tabLekiwPromocji = listaLekow;
+                model.tabNoweLeki = listaLekow_NoweLeki;
+                model2.tabLekiwPromocji = listaLekow_wPromocji;
                 if(jTabbedPane2.getSelectedIndex() == 0)
                 {
                 jTable3.setModel(model);
