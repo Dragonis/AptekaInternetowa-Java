@@ -5,7 +5,6 @@
  */
 package AptekaInternetowa.java;
 
-import static AptekaInternetowa.java.PanelLogowania.db;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
@@ -267,6 +266,7 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
         }
         try {
             db.insertData(nazwa, producent, cena, sztuk);
+            db.showData();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(PanelSprzedawcy.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

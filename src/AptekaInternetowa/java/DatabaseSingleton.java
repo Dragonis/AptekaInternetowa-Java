@@ -6,6 +6,7 @@
 package AptekaInternetowa.java;
 
 import AptekaInternetowa.models.Lek;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -23,12 +24,12 @@ public final class DatabaseSingleton {
 
     Connection conn = null;
     Statement stat = null;
+    String databaseName = "test.db";
+    File file = null;
     
     public DatabaseSingleton() throws ClassNotFoundException, SQLException {
         
-        Initialization();
-        createTable();
-        insertData("nazwa","producent", (float) 14, 4);
+        Initialization(); // * sprawdzecznie czy db istnieje jak nie to stowrzenie jej
         showData();
         // closeConnection();
     }
@@ -39,8 +40,13 @@ public final class DatabaseSingleton {
     
     public void Initialization() throws ClassNotFoundException, SQLException
     {
+         file = new File(databaseName);
+        if(! file.exists())
+        {
+        createTable();
+        }
         Class.forName("org.sqlite.JDBC");
-        conn  = DriverManager.getConnection("jdbc:sqlite:test.db");
+        conn  = DriverManager.getConnection("jdbc:sqlite:"+ databaseName);
         stat  = conn.createStatement();
     }
     public void insertData(String nazwa, String producent, Float cena, Integer sztuk) throws ClassNotFoundException, SQLException
@@ -78,6 +84,8 @@ public final class DatabaseSingleton {
          stat.executeUpdate("drop table if exists leki;");
          stat.executeUpdate("create table leki (nazwa,producent,cena,sztuk);");
     }
+
+  
 
 
 
