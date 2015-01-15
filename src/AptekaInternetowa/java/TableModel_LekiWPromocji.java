@@ -16,8 +16,8 @@ import javax.swing.table.AbstractTableModel;
  */
 public class TableModel_LekiWPromocji extends AbstractTableModel {
 
-    private String[] columnNames = {"ID", "Nazwa", "Producnt","Cena","Sztuk","Kupiony"};
-    private ArrayList<Lek> tabLekiwPromocji = (new DatabaseLayer()).getLekiwPromocji();
+    String[] columnNames = {"ID", "Nazwa", "Producnt","Cena","Sztuk","Kupiony"};
+    ArrayList<Lek> tabLekiwPromocji = (new DatabaseLayer()).getLekiwPromocji();
 
     @Override
     public int getRowCount() {

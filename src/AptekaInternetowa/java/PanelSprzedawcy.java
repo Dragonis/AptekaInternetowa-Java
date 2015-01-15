@@ -13,6 +13,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import AptekaInternetowa.models.Lek;
 import AptekaInternetowa.models.Uzytkownik;
+import javax.swing.JTabbedPane;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
@@ -247,9 +248,16 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
                 // db.insrtData();
                 
                 TableModel_NoweLeki model = new TableModel_NoweLeki();
+                TableModel_LekiWPromocji model2 = new TableModel_LekiWPromocji();
                 model.tabNoweLeki = listaLekow;
-                
+                model2.tabLekiwPromocji = listaLekow;
+                if(jTabbedPane2.getSelectedIndex() == 0)
+                {
                 jTable3.setModel(model);
+                }else if(jTabbedPane2.getSelectedIndex() == 1)
+                {
+                    jTable2.setModel(model2);   
+                }               
                 
     }//GEN-LAST:event_bttn_DodajLekActionPerformed
 
