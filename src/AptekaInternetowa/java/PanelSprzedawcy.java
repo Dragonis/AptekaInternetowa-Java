@@ -15,6 +15,7 @@ import AptekaInternetowa.models.Uzytkownik;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
@@ -72,6 +73,7 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
         txt_Producent = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txt_Sztuk = new javax.swing.JTextField();
+        usunDB_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -188,31 +190,45 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        usunDB_button.setText("usuń bazę danych");
+        usunDB_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usunDB_buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(184, 184, 184)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2))
-                    .addComponent(jLabel5))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel4))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel4))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(184, 184, 184)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel2))
+                                    .addComponent(jLabel5)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(149, 149, 149)
+                                .addComponent(usunDB_button)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -232,7 +248,9 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(usunDB_button)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -286,6 +304,18 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
                 }               
                 
     }//GEN-LAST:event_bttn_DodajLekActionPerformed
+
+    private void usunDB_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usunDB_buttonActionPerformed
+        try {
+            db = new DatabaseSingleton();
+            db.usunDB();
+            JOptionPane.showMessageDialog(rootPane, "Usunięto DB");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PanelSprzedawcy.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PanelSprzedawcy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_usunDB_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -346,5 +376,6 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
     private javax.swing.JTextField txt_Nazwa;
     private javax.swing.JTextField txt_Producent;
     private javax.swing.JTextField txt_Sztuk;
+    private javax.swing.JButton usunDB_button;
     // End of variables declaration//GEN-END:variables
 }

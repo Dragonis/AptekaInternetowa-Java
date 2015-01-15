@@ -40,14 +40,13 @@ public final class DatabaseSingleton {
     
     public void Initialization() throws ClassNotFoundException, SQLException
     {
-         file = new File(databaseName);
-        if(! file.exists())
-        {
-        createTable();
-        }
+        
         Class.forName("org.sqlite.JDBC");
         conn  = DriverManager.getConnection("jdbc:sqlite:"+ databaseName);
         stat  = conn.createStatement();
+    
+        createTable();
+        
     }
     public void insertData(String nazwa, String producent, Float cena, Integer sztuk) throws ClassNotFoundException, SQLException
     {
@@ -81,10 +80,14 @@ public final class DatabaseSingleton {
     }
 
     public void createTable() throws SQLException {
-         stat.executeUpdate("drop table if exists leki;");
-         stat.executeUpdate("create table leki (nazwa,producent,cena,sztuk);");
+         stat.executeUpdate("create table if not exists leki (nazwa,producent,cena,sztuk);");
     }
 
+    public void usunDB() throws SQLException
+    {
+        stat.executeUpdate("drop table if exists leki;");
+        
+    }
   
 
 
