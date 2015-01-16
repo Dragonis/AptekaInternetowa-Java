@@ -31,40 +31,49 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
      * Creates new form PanelZamowienia
      */
     ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseLayer()).getLekidoZaplaty();
+    DatabaseSingleton db = null;
+    
 
     public PanelZamowieniaKlienta() {
-        initComponents();
-
+        try {
+            initComponents();
+            db = new DatabaseSingleton();
+            ArrayList<Lek> tablicaLekowzDB = db.showData();
+            tabLekiDoZaplaty = tablicaLekowzDB;
+            jLabel2.setText(Uzytkownik.Nazwa);
+            jTable_LekiwPromocji.setModel(new TableModel_LekiWPromocji());
+            jTable_NoweLeki.setModel(new TableModel_NoweLeki());
+            jTable_LekiDoZaplaty.setModel(new TableModel_LekiDoZaplaty());
+            jTable_NoweLeki.getModel().addTableModelListener(new TableModelListener() {
                 
-        
-        jLabel2.setText(Uzytkownik.Nazwa);
-        jTable_LekiwPromocji.setModel(new TableModel_LekiWPromocji());
-        jTable_NoweLeki.setModel(new TableModel_NoweLeki());
-        jTable_LekiDoZaplaty.setModel(new TableModel_LekiDoZaplaty());
-        jTable_NoweLeki.getModel().addTableModelListener(new TableModelListener() {
-
-            @Override
-            public void tableChanged(TableModelEvent e) {
-                //    jTable_LekiDoZaplaty.setModel(new TableModel_LekiWPromocji());
-                Lek lek = new Lek(e.getFirstRow(), "TEST", "TEST", 14, 5);
-
+                @Override
+                public void tableChanged(TableModelEvent e) {
+                    //    jTable_LekiDoZaplaty.setModel(new TableModel_LekiWPromocji());
+                    int row = e.getFirstRow();
+                    Lek lek = new Lek(row,tabLekiDoZaplaty.get(4).getNazwa() , "TEST", 14, 5);
+                    
+                    tabLekiDoZaplaty.add(lek);
+                    
+                    TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
+                    model.tabLekiDoZaplaty = tabLekiDoZaplaty;
+                    jTable_LekiDoZaplaty.setModel(model);
+                }
+                
+            });
+            jTable_LekiwPromocji.getModel().addTableModelListener((TableModelEvent e) -> {
+                Lek lek = new Lek(e.getFirstRow(), "TABELA_2", "TEST_2", 14, 5);
+                
                 tabLekiDoZaplaty.add(lek);
 
                 TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
                 model.tabLekiDoZaplaty = tabLekiDoZaplaty;
                 jTable_LekiDoZaplaty.setModel(model);
-            }
-            
-        });
-        jTable_LekiwPromocji.getModel().addTableModelListener((TableModelEvent e) -> {
-            Lek lek = new Lek(e.getFirstRow(), "TABELA_2", "TEST_2", 14, 5);
-            
-            tabLekiDoZaplaty.add(lek);
-            
-            TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
-            model.tabLekiDoZaplaty = tabLekiDoZaplaty;
-            jTable_LekiDoZaplaty.setModel(model);
-        });
+            });
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PanelZamowieniaKlienta.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
    

@@ -54,9 +54,9 @@ public class PanelLogowania extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("root");
+        jTextField1.setText("user");
 
-        jTextField2.setText("root");
+        jTextField2.setText("user");
 
         jLabel3.setText("Panel Administracyjny - Apteka Internetowa");
 
