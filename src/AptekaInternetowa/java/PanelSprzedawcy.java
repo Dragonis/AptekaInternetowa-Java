@@ -29,16 +29,20 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
 
     ArrayList<Lek> listaLekow_NoweLeki = new ArrayList<Lek>();
     ArrayList<Lek> listaLekow_wPromocji = new ArrayList<Lek>();
-    ArrayList<Lek> listaLekow_wszystkieLeki = new ArrayList<Lek>();
     DatabaseSingleton db = null;
     
     public PanelSprzedawcy() {
         initComponents();
    
         jLabel2.setText(Uzytkownik.Nazwa);
+        TableModel_LekiWPromocji tableModel_LekiWPromocji = new TableModel_LekiWPromocji();
+        TableModel_NoweLeki tableModel_NoweLeki = new TableModel_NoweLeki();
+
+        jTable2.setModel(tableModel_LekiWPromocji);
+        jTable3.setModel(tableModel_NoweLeki);
         
-        jTable2.setModel(new TableModel_LekiWPromocji());
-        jTable3.setModel(new TableModel_NoweLeki());
+        listaLekow_NoweLeki = tableModel_NoweLeki.tabNoweLeki;
+        listaLekow_wPromocji = tableModel_LekiWPromocji.tabLekiwPromocji;
        
             
         
@@ -274,7 +278,6 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
                 {
                     listaLekow_wPromocji.add(lek);
                 }
-                listaLekow_wszystkieLeki.add(lek);
         try {
             db = new DatabaseSingleton();
         } catch (ClassNotFoundException ex) {
@@ -309,6 +312,14 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
         try {
             db = new DatabaseSingleton();
             db.usunDB();
+            TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
+            ArrayList<Lek> tabLekiDoZaplaty = model.tabLekiDoZaplaty;
+            tabLekiDoZaplaty = null;
+            listaLekow_NoweLeki = new ArrayList<>();
+            listaLekow_wPromocji = new ArrayList<>();
+            model.fireTableDataChanged();
+            jTable3.setModel(model);
+            
             JOptionPane.showMessageDialog(rootPane, "Usunięto DB");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(PanelSprzedawcy.class.getName()).log(Level.SEVERE, null, ex);

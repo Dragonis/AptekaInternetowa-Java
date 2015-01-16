@@ -94,8 +94,7 @@ public final class DatabaseSingleton {
 
     public void usunDB() throws SQLException
     {
-        stat.executeUpdate("drop table if exists leki;");
-        
+        stat.executeUpdate("drop table leki;");       
     }
   
 
