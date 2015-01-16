@@ -36,7 +36,8 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
     DatabaseSingleton db = null;
     ArrayList<Lek> tempLekiDoZaplaty = new ArrayList<>();
     int Selectedrow = 0;
-    
+    float koszt = 0; 
+    float tempKoszt = 0;    
     
 
     public PanelZamowieniaKlienta() {
@@ -74,8 +75,8 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                     
                     
                     tempLekiDoZaplaty.add(lek);
-                    
-                    
+                    dodajDoZaplaty(cena);
+                    lacznieDoZaplacenia();
                     
                     TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
                     model.tabLekiDoZaplaty = tempLekiDoZaplaty;
@@ -123,7 +124,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         Wyloguj_button = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        doZaplacenia_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -188,7 +189,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
 
         jLabel4.setText("Razem do zapłaty:");
 
-        jLabel6.setText("..............");
+        doZaplacenia_label.setText("..............");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -222,7 +223,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel6)
+                .addComponent(doZaplacenia_label)
                 .addGap(60, 60, 60))
         );
         layout.setVerticalGroup(
@@ -243,7 +244,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel6))
+                    .addComponent(doZaplacenia_label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(Wyloguj_button)
                 .addContainerGap())
@@ -301,16 +302,29 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
         return jTable_LekiDoZaplaty;
     }
     
- 
+    public float lacznieDoZaplacenia()
+    {
+        
+        tempKoszt += koszt;
+        doZaplacenia_label.setText(Float.toString(tempKoszt));
+        return koszt;
+    }
+    
+    void dodajDoZaplaty(float cena)
+    {
+      koszt = cena;  
+    }
+            
+            
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Wyloguj_button;
+    private javax.swing.JLabel doZaplacenia_label;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
