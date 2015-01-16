@@ -6,24 +6,34 @@
 package AptekaInternetowa.java;
 
 import AptekaInternetowa.models.Lek;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Wojtek
  */
 public class DatabaseLayer {
-        ArrayList<Lek> set = new ArrayList();
-
+        ArrayList<Lek> set = new ArrayList(); 
+/// @UP: pojdzie do usunicia, kwestia tylko przerobienie tak samo nastepne metody
+        ArrayList<Lek> leki = null;
+        DatabaseSingleton db = null;
+        
     public ArrayList<Lek> getNoweLeki() {
-        
-        Lek nowe1 = new Lek(1, "Lek1", "Producent", 50, 30, false);
-        Lek nowe2 = new Lek(2, "lek2", "Producent2", 60, 80, false);
-        Lek nowe3 = new Lek(3, "lek3", "Producent3", 70, 40, false);
+            try {
+                db = new DatabaseSingleton();
+                leki = db.showData();
 
-        set.add(nowe1); set.add(nowe2); set.add(nowe3);
-        
-        return set;
+                return leki;
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(DatabaseLayer.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(DatabaseLayer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return leki;
     }
     
     public ArrayList<Lek> getLekiwPromocji()

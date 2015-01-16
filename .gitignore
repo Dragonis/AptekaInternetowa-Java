@@ -1,5 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /dist/
 =======
 /build/
 >>>>>>> c444bce8dc96c74e72c24db9c519aebe25e2a2fc
+=======
+/dist/
+test.db
+>>>>>>> dev
