@@ -19,6 +19,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 
 /**
@@ -33,25 +35,42 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
     ArrayList<Lek> tabLekiDoZaplatyDB = (new DatabaseLayer()).getLekidoZaplaty();
     DatabaseSingleton db = null;
     ArrayList<Lek> tempLekiDoZaplaty = new ArrayList<>();
+    int Selectedrow = 0;
+    
     
 
     public PanelZamowieniaKlienta() {
         try {
             initComponents();
             db = new DatabaseSingleton();
+            
             ArrayList<Lek> tablicaLekowzDB = db.showData();
             tabLekiDoZaplatyDB = tablicaLekowzDB;
             jLabel2.setText(Uzytkownik.Nazwa);
             jTable_LekiwPromocji.setModel(new TableModel_LekiWPromocji());
             jTable_NoweLeki.setModel(new TableModel_NoweLeki());
             jTable_LekiDoZaplaty.setModel(new TableModel_LekiDoZaplaty());
+            
+            jTable_NoweLeki.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+                @Override
+                public void valueChanged(ListSelectionEvent e) {
+                    Selectedrow = jTable_NoweLeki.getSelectedRow()+1;
+                }
+            });
             jTable_NoweLeki.getModel().addTableModelListener(new TableModelListener() {
                 
                 @Override
                 public void tableChanged(TableModelEvent e) {
                     //    jTable_LekiDoZaplaty.setModel(new TableModel_LekiWPromocji());
-                    int row = e.getFirstRow();
-                    Lek lek = new Lek(row,tabLekiDoZaplatyDB.get(4).getNazwa() , "TEST", 14, 5);
+                    
+                    Integer id = tabLekiDoZaplatyDB.get(Selectedrow).getId();
+                    String nazwa = tabLekiDoZaplatyDB.get(Selectedrow).getNazwa();
+                    String producent = tabLekiDoZaplatyDB.get(Selectedrow).getProducent();
+                    Float cena = tabLekiDoZaplatyDB.get(Selectedrow).getCena();
+                    Integer ilosc = tabLekiDoZaplatyDB.get(Selectedrow).getSztuk();
+                    
+                    Lek lek = new Lek(Selectedrow, nazwa, producent, cena, ilosc);
                     
                     
                     tempLekiDoZaplaty.add(lek);
@@ -120,6 +139,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                 "ID", "Nazwa", "Producent", "Cena"
             }
         ));
+        jTable_NoweLeki.setEditingRow(0);
         jScrollPane3.setViewportView(jTable_NoweLeki);
 
         jTabbedPane2.addTab("Nowe", jScrollPane3);
@@ -244,6 +264,8 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
     public JTable getJTable4() {
         return jTable_LekiDoZaplaty;
     }
+    
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
