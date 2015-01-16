@@ -67,16 +67,25 @@ public final class DatabaseSingleton {
     
        }
 
-    public void showData() throws SQLException {
+    public ArrayList<Lek> showData() throws SQLException {
+        ArrayList<Lek> leki = new ArrayList<Lek>();
+        int i=0;
         ResultSet rs = stat.executeQuery("select * from leki;");
         while (rs.next()) {
-            System.out.println("nazwa = " + rs.getString("nazwa"));
-            System.out.println("producent= " + rs.getString("producent"));
-            System.out.println("cena= " + rs.getFloat("cena"));
-            System.out.println("sztuk= " + rs.getInt("sztuk"));
+            
+            String nazwa = rs.getString("nazwa");
+            System.out.println("nazwa = " + nazwa);
+            String producent = rs.getString("producent");
+            System.out.println("producent= " + producent);
+            float cena = rs.getFloat("cena");
+            System.out.println("cena= " + cena);
+            int sztuk = rs.getInt("sztuk");
+            System.out.println("sztuk= " + sztuk);
+            leki.add(new Lek(i,nazwa,producent,cena,sztuk));
+                    i++;
         }
         rs.close();
-        
+        return leki;
     }
 
     public void createTable() throws SQLException {
