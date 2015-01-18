@@ -446,7 +446,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
     
     public void lacznieDoZaplacenia()
     {
-        
+        tempKosztBezVATu += kosztBezVatu;
         tempKosztZVATem += kosztzVATem;
         doZaplacenia_label.setText(Float.toString(tempKosztBezVATu));
         
