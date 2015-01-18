@@ -8,11 +8,9 @@ package AptekaInternetowa.java;
 import AptekaInternetowa.models.Lek;
 import java.util.ArrayList;
 import javax.swing.JTable;
-import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -39,6 +37,12 @@ public class TableModel_NoweLeki extends AbstractTableModel implements TableMode
         return columnNames.length;
     }
 
+    /**
+     * Wyświetla wszystkie rekordy w tabeli zgodnie z wartoscia kolumny.
+     * @param rowIndex
+     * @param columnIndex
+     * @return Object
+     */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Lek ks = tabNoweLeki.get(rowIndex);
@@ -67,25 +71,32 @@ public class TableModel_NoweLeki extends AbstractTableModel implements TableMode
         return columnNames[col];
     }
     
-     // Pozwala na edytowanie danych w tabeli
-        @Override
+     /**
+      * Metoda reagujaca na zaznaczenie badz odznaczenie checkboxa w tabeli
+      * @param row
+      * @param col
+      * @return boolean
+      */ 
+    @Override
         public boolean isCellEditable(int row, int col) {
            
+            // Jeżeli checkbox kupiony == false
             if(tabNoweLeki.get(row).isKupiony() == false)
             {
+                // ustaw ten checkbox na true;
                 tabNoweLeki.get(row).setKupiony(true);
-                System.out.println("Zmieniono wartosc na true");
+                System.out.println("Zmieniono wartosc checbkboxa na true");
                 
-                // tabNoweLeki.add(new Lek(4, "aaa", "bbb", (float) 14.06, 5, true));
-                Lek ks = new Lek(4, "aaa", "bbb", (float) 14.06, 5);
+                // poniewaz nie mozna z tego miejsca wywolac dostepu do Tabeli, 
+                // to odwoluje sie do niej prez przez new nowaFormatka.Tabela4 (ta ktora mnei interesuje)
                 JTable JTable4 = new PanelZamowieniaKlienta().getJTable4();
-                JTable4.setValueAt(1, 4, 0);
-                
-                fireTableCellUpdated(0, 4);
+               
+                // wprwoadzam do tabeli zawartosc danych, jakim jest ta klasa.
                 JTable4.setModel(this);
                 
-                new TableModel_LekiDoZaplaty().setValueAt(0, row, col);
-                           
+                // informuje tabele by sie odswiezyla 
+                // poniewaz tabela sama w sobie nie ma mozliwosci autoodswiezania danych, po insercie/update/delete..)
+                fireTableCellUpdated(0, 4);
                 
                 
                 
@@ -105,25 +116,15 @@ public class TableModel_NoweLeki extends AbstractTableModel implements TableMode
                 return String.class;
         }
     }
-    
-       
+
 
     @Override
     public void tableChanged(TableModelEvent e) {
 
-     int row = e.getFirstRow();
-        int column = e.getColumn();
-        TableModel model = (TableModel)e.getSource();
-        String columnName = model.getColumnName(column);
-        Object data = model.getValueAt(row, column);
-
-        tabLekiDoZaplaty.add(new Lek(4, "aaa", "bbb", (float) 14.06, 5, true));
     }
     
     public void setValueAt(Object value, int row, int col) {
         
-       //  fireTableDataChanged();
-       // fireTableCellUpdated(row, col);
     }
     
 

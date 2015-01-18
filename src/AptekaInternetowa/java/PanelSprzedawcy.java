@@ -81,6 +81,7 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
         Wyloguj_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Apteka Internetowa - Panel Sprzedawcy");
 
         jLabel1.setText("Jesteś zalogowany jako: ");
 
