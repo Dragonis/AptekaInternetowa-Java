@@ -95,6 +95,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
             jTable_LekiwPromocji.getModel().addTableModelListener((TableModelEvent e) -> {
                 Lek lek = new Lek(e.getFirstRow(), "TABELA_2", "TEST_2", 14, 5);
                 
+                tabLekiDoZaplatyDB.clear();
                 tabLekiDoZaplatyDB.add(lek);
 
                 TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
