@@ -51,7 +51,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
             initComponents();
             db = new DatabaseSingleton();
             
-            ArrayList<Lek> tablicaLekowzDB = db.showData();
+            ArrayList<Lek> tablicaLekowzDB = db.pokazLekizDB();
             tabLekiDoZaplatyDB = tablicaLekowzDB;
             jLabel2.setText(Uzytkownik.Nazwa);
             jTable_LekiwPromocji.setModel(new TableModel_LekiWPromocji());
@@ -93,12 +93,17 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                 
             });
             jTable_LekiwPromocji.getModel().addTableModelListener((TableModelEvent e) -> {
+                
                 Lek lek = new Lek(e.getFirstRow(), "TABELA_2", "TEST_2", 14, 5);
                 
+                tabLekiDoZaplatyDB.clear();
                 tabLekiDoZaplatyDB.add(lek);
 
                 TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
-                model.tabLekiDoZaplaty = tabLekiDoZaplatyDB;
+                ArrayList<Lek> lists = new ArrayList<Lek>();
+                lists.addAll(tabLekiDoZaplatyDB);
+                lists.addAll(tempLekiDoZaplaty);
+                model.tabLekiDoZaplaty = lists;
                 jTable_LekiDoZaplaty.setModel(model);
             });
         } catch (ClassNotFoundException ex) {

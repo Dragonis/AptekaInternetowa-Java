@@ -29,8 +29,10 @@ public final class DatabaseSingleton {
     
     public DatabaseSingleton() throws ClassNotFoundException, SQLException {
         
-        Initialization(); // * sprawdzecznie czy db istnieje jak nie to stowrzenie jej
-        showData();
+        Initialization(); 
+        // * sprawdzecznie czy baza danych istnieje, jak nie to tworzy ja
+        pokazLekizDB();
+        pokazPromocyjneLekizDB();
         // closeConnection();
     }
 
@@ -48,7 +50,7 @@ public final class DatabaseSingleton {
         createTable();
         
     }
-    public void insertData(String nazwa, String producent, Float cena, Integer sztuk) throws ClassNotFoundException, SQLException
+    public void wprowadzLekiDoBazyDanych(String nazwa, String producent, Float cena, Integer sztuk) throws ClassNotFoundException, SQLException
     {
         PreparedStatement prep = conn.prepareStatement(
             "insert into leki values (?, ?, ?, ?);");
@@ -62,12 +64,25 @@ public final class DatabaseSingleton {
         conn.setAutoCommit(false);
         prep.executeBatch();
         conn.setAutoCommit(true);
-        
-        
-    
        }
 
-    public ArrayList<Lek> showData() throws SQLException {
+       public void wprowadzPromocyjneLekiDoBazyDanych(String nazwa, String producent, Float cena, Integer sztuk) throws ClassNotFoundException, SQLException
+    {
+        PreparedStatement prep = conn.prepareStatement(
+            "insert into promocja values (?, ?, ?, ?);");
+
+        prep.setString(1, nazwa);
+        prep.setString(2, producent);
+        prep.setFloat(3, cena);
+        prep.setInt(4, sztuk);
+        prep.addBatch();
+        
+        conn.setAutoCommit(false);
+        prep.executeBatch();
+        conn.setAutoCommit(true);
+       }
+    
+    public ArrayList<Lek> pokazLekizDB() throws SQLException {
         ArrayList<Lek> leki = new ArrayList<Lek>();
         int i=0;
         ResultSet rs = stat.executeQuery("select * from leki;");
@@ -87,14 +102,33 @@ public final class DatabaseSingleton {
         rs.close();
         return leki;
     }
+    
+     public ArrayList<Lek> pokazPromocyjneLekizDB() throws SQLException {
+        ArrayList<Lek> leki = new ArrayList<Lek>();
+        int i=0;
+        ResultSet rs = stat.executeQuery("select * from promocja;");
+        while (rs.next()) {
+            
+            String nazwa = rs.getString("nazwa");
+            String producent = rs.getString("producent");
+            float cena = rs.getFloat("cena");
+            int sztuk = rs.getInt("sztuk");
+            leki.add(new Lek(i,nazwa,producent,cena,sztuk));
+                    i++;
+        }
+        rs.close();
+        return leki;
+    }
 
     public void createTable() throws SQLException {
          stat.executeUpdate("create table if not exists leki (nazwa,producent,cena,sztuk);");
+         stat.executeUpdate("create table if not exists promocja (nazwa,producent,cena,sztuk);");
     }
 
     public void usunDB() throws SQLException
     {
         stat.executeUpdate("drop table leki;");       
+        stat.executeUpdate("drop table promocja;");       
     }
   
 
