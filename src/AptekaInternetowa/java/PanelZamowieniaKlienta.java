@@ -100,7 +100,10 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
                 tabLekiDoZaplatyDB.add(lek);
 
                 TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
-                model.tabLekiDoZaplaty = tabLekiDoZaplatyDB;
+                ArrayList<Lek> lists = new ArrayList<Lek>();
+                lists.addAll(tabLekiDoZaplatyDB);
+                lists.addAll(tempLekiDoZaplaty);
+                model.tabLekiDoZaplaty = lists;
                 jTable_LekiDoZaplaty.setModel(model);
             });
         } catch (ClassNotFoundException ex) {

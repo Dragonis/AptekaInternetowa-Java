@@ -41,7 +41,6 @@ public class DatabaseLayer {
          try {
                 db = new DatabaseSingleton();
                 leki = db.pokazPromocyjneLekizDB();
-
                 return leki;
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(DatabaseLayer.class.getName()).log(Level.SEVERE, null, ex);
