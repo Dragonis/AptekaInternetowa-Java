@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AptekaInternetowa.java;
+package AptekaInternetowa.database;
 
 import AptekaInternetowa.models.Lek;
 import java.io.File;
@@ -14,20 +14,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 /**
  *
  * @author student
  */
-public final class DatabaseSingleton {
+public final class SingletonDatabaseInstance {
 
     Connection conn = null;
     Statement stat = null;
     String databaseName = "test.db";
     File file = null;
     
-    public DatabaseSingleton() throws ClassNotFoundException, SQLException {
+    public SingletonDatabaseInstance() throws ClassNotFoundException, SQLException {
         
         Initialization(); 
         // * sprawdzecznie czy baza danych istnieje, jak nie to tworzy ja

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AptekaInternetowa.java;
+package AptekaInternetowa.main;
 
+import AptekaInternetowa.database.DatabaseToObjectAdapter;
 import AptekaInternetowa.models.Lek;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -17,7 +18,7 @@ import javax.swing.table.AbstractTableModel;
 public class TableModel_LekiWPromocji extends AbstractTableModel {
 
     String[] columnNames = {"ID", "Nazwa", "Producnt","Cena","Sztuk","Kupiony"};
-    ArrayList<Lek> tabLekiwPromocji = (new DatabaseLayer()).getLekiwPromocji();
+    ArrayList<Lek> tabLekiwPromocji = (new DatabaseToObjectAdapter()).getLekiwPromocji();
 
     @Override
     public int getRowCount() {
@@ -73,7 +74,7 @@ public class TableModel_LekiWPromocji extends AbstractTableModel {
                 
                 // tabNoweLeki.add(new Lek(4, "aaa", "bbb", (float) 14.06, 5, true));
                 Lek ks = new Lek(4, "Lek_w_promocji", "Niesamowity_producent", (float) 14.06, 5);
-                JTable JTable4 = new PanelZamowieniaKlienta().getJTable4();
+                JTable JTable4 = new PanelZamowieniaKlienta().getJTable_LekiDoZaplaty();
                 JTable4.setValueAt(1, 4, 0);
                 
                 fireTableCellUpdated(0, 4);

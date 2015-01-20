@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AptekaInternetowa.java;
+package AptekaInternetowa.main;
 
+import AptekaInternetowa.database.SingletonDatabaseInstance;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
@@ -29,7 +30,7 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
 
     ArrayList<Lek> listaLekow_NoweLeki = new ArrayList<Lek>();
     ArrayList<Lek> listaLekow_wPromocji = new ArrayList<Lek>();
-    DatabaseSingleton db = null;
+    SingletonDatabaseInstance db = null;
 
     public PanelSprzedawcy() {
         initComponents();
@@ -287,7 +288,7 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
         if (jTabbedPane2.getSelectedIndex() == 0) {
             listaLekow_NoweLeki.add(lek);
             try {
-                db = new DatabaseSingleton();
+                db = new SingletonDatabaseInstance();
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(PanelSprzedawcy.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
@@ -305,7 +306,7 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
             listaLekow_wPromocji.add(lek);
             
                  try {
-                db = new DatabaseSingleton();
+                db = new SingletonDatabaseInstance();
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(PanelSprzedawcy.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
@@ -335,7 +336,7 @@ public class PanelSprzedawcy extends javax.swing.JFrame {
 
     private void usunDB_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usunDB_buttonActionPerformed
         try {
-            db = new DatabaseSingleton();
+            db = new SingletonDatabaseInstance();
             db.usunDB();
             TableModel_LekiDoZaplaty model = new TableModel_LekiDoZaplaty();
             ArrayList<Lek> tabLekiDoZaplaty = model.tabLekiDoZaplaty;

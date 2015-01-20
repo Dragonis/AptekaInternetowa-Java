@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AptekaInternetowa.java;
+package AptekaInternetowa.main;
 
+import AptekaInternetowa.database.DatabaseToObjectAdapter;
 import AptekaInternetowa.models.Lek;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -20,8 +21,8 @@ import javax.swing.table.TableModel;
 public class TableModel_NoweLeki extends AbstractTableModel implements TableModelListener {
 
     String[] columnNames = {"ID", "Nazwa", "Producent","Cena","Sztuk","Kupiony"};
-    ArrayList<Lek> tabNoweLeki = (new DatabaseLayer()).getNoweLeki();
-    ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseLayer()).getLekidoZaplaty();
+    ArrayList<Lek> tabNoweLeki = (new DatabaseToObjectAdapter()).getNoweLeki();
+    ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseToObjectAdapter()).getLekidoZaplaty();
 
     public TableModel_NoweLeki() {
         addTableModelListener(this);
@@ -89,7 +90,7 @@ public class TableModel_NoweLeki extends AbstractTableModel implements TableMode
                 
                 // poniewaz nie mozna z tego miejsca wywolac dostepu do Tabeli, 
                 // to odwoluje sie do niej prez przez new nowaFormatka.Tabela4 (ta ktora mnei interesuje)
-                JTable JTable4 = new PanelZamowieniaKlienta().getJTable4();
+                JTable JTable4 = new PanelZamowieniaKlienta().getJTable_LekiDoZaplaty();
                
                 // wprwoadzam do tabeli zawartosc danych, jakim jest ta klasa.
                 JTable4.setModel(this);
