@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AptekaInternetowa.java;
+package AptekaInternetowa.main;
 
+import AptekaInternetowa.database.SingletonDatabaseInstance;
+import AptekaInternetowa.database.DatabaseToObjectAdapter;
 import AptekaInternetowa.models.Lek;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -35,8 +37,8 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
     /**
      * Creates new form PanelZamowienia
      */
-    ArrayList<Lek> tabLekiDoZaplatyDB = (new DatabaseLayer()).getLekidoZaplaty();
-    DatabaseSingleton db = null;
+    ArrayList<Lek> tabLekiDoZaplatyDB = (new DatabaseToObjectAdapter()).getLekidoZaplaty();
+    SingletonDatabaseInstance db = null;
     ArrayList<Lek> tempLekiDoZaplaty = new ArrayList<>();
     int Selectedrow = 0;
     float kosztBezVatu = 0; 
@@ -49,7 +51,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
         
     try {
             initComponents();
-            db = new DatabaseSingleton();
+            db = new SingletonDatabaseInstance();
             
             ArrayList<Lek> tablicaLekowzDB = db.pokazLekizDB();
             tabLekiDoZaplatyDB = tablicaLekowzDB;
@@ -445,7 +447,7 @@ public class PanelZamowieniaKlienta extends javax.swing.JFrame {
         });
     }
 
-    public JTable getJTable4() {
+    public JTable getJTable_LekiDoZaplaty() {
         return jTable_LekiDoZaplaty;
     }
     

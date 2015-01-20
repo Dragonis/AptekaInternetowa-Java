@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AptekaInternetowa.java;
+package AptekaInternetowa.main;
 
+import AptekaInternetowa.database.DatabaseToObjectAdapter;
 import AptekaInternetowa.models.Lek;
 import java.util.ArrayList;
-import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
@@ -19,7 +19,7 @@ import javax.swing.table.AbstractTableModel;
 public class TableModel_LekiDoZaplaty extends AbstractTableModel implements TableModelListener {
 
     private String[] columnNames = {"ID", "Nazwa", "Producent", "Cena", "Sztuk"};
-     ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseLayer()).getLekidoZaplaty();
+     ArrayList<Lek> tabLekiDoZaplaty = (new DatabaseToObjectAdapter()).getLekidoZaplaty();
 
     @Override
     public int getRowCount() {
@@ -52,16 +52,6 @@ public class TableModel_LekiDoZaplaty extends AbstractTableModel implements Tabl
         }
         
     }
-    /* 
-     public Class getColumnClass(int c) {
-     switch (c) {
-     case 5:
-     return Boolean.class;
-     default:
-     return String.class;
-     }
-     }
-     */
     
        // Pozwala na edytowanie danych w tabeli
         @Override
@@ -72,7 +62,6 @@ public class TableModel_LekiDoZaplaty extends AbstractTableModel implements Tabl
         }
 
     public void setValueAt(Object value, int row, int col) {
-  // tabLekiDoZaplaty.add(new Lek(4, "aaa", "bbb", (float) 14.04, 2));
         fireTableCellUpdated(row, col);
       
     }
